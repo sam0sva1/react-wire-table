@@ -3,3 +3,86 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.rwt-table {
+
+}
+
+.rwt-table__header {
+
+}
+
+.rwt-header {
+
+}
+
+.rwt-table__body {
+
+}
+
+.rwt-body {
+
+}
+
+.rwt-header__row {
+
+}
+
+.rwt-body__row {
+
+}
+
+.rwt-row {
+
+}
+
+.rwt-row__cell {
+
+}
+
+.rwt-cell {
+
+}
+
+// ==========
+
+.rwt-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.rwt-table__header {
+  width: 100%;
+}
+
+.rwt-header {
+  background-color: rgba(0, 185, 255, 0.1);
+}
+
+.rwt-table__body {
+  width: 100%;
+}
+
+.rwt-body {
+
+}
+
+.rwt-header__row {
+
+}
+
+.rwt-body__row {
+
+}
+
+.rwt-row {
+  display: flex;
+}
+
+.rwt-row__cell {
+
+}
+
+.rwt-cell {
+  padding: 8px;
+}
