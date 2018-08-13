@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import WireTable from 'react-wire-table';
 
-import './index.css';
-
 
 const getGrid = params => [
   {
-    index: 'title',
-    label: 'Название',
+    index: 'name',
+    label: 'Title',
     width: 100,
     render: ({ id, title }) => (
       <a
@@ -19,12 +17,12 @@ const getGrid = params => [
   },
   {
     index: 'created',
-    label: 'Дата',
+    label: 'Date',
     width: 100,
   },
   {
     index: 'description',
-    label: 'Краткое описание',
+    label: 'Description',
     width: 200,
     render: item => (<div>{item.description}</div>),
   },
@@ -33,7 +31,7 @@ const getGrid = params => [
 const items = [
   {
     id: '1',
-    title: 'Live',
+    name: 'Live',
     created: '23.07.1991',
     description: 'Hello Heloo',
   },
@@ -57,9 +55,7 @@ export default class App extends Component {
           items={items}
           grid={getGrid(params)}
           emptyMessage={(
-            isSimple
-              ? <div style={{ fontSize: '0.7em', lineHeight: '1.3em' }}>Пока не добавлено ни одного экспоната. Обратите внимание, что внутри данной<br />коллекции вложены другие коллекции, в которых могут быть экспонаты. Перейти к ним<br />можно из меню коллекций.</div>
-              : 'Пока не добавлено ни одного экспоната.'
+            <div style={{ fontSize: '0.7em', lineHeight: '1.3em' }}>There are no items yet.</div>
           )}
         />
       </div>

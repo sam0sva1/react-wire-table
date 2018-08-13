@@ -6,7 +6,7 @@
 
 }
 
-.rwt-header {
+.rwt-table-header {
 
 }
 
@@ -14,26 +14,26 @@
 
 }
 
-.rwt-body {
+.rwt-table-body {
 
 }
 
-.rwt-header__row {
+.rwt-table-header__row {
 
 }
 
-.rwt-body__row {
+.rwt-table-body__row {
 
 }
 
-.rwt-row {
+.rwt-table-row {
 
 }
 
-.rwt-row__cell {
+.rwt-table-row__cell {
 
 }
 
-.rwt-cell {
+.rwt-table-cell {
 
 }

@@ -19,8 +19,8 @@ import WireTable from 'react-wire-table'
 
 const getGrid = params => [
   {
-    index: 'title',
-    label: 'Название',
+    index: 'name',
+    label: 'Title',
     width: 100,
     render: ({ id, title }) => (
       <a
@@ -32,12 +32,12 @@ const getGrid = params => [
   },
   {
     index: 'created',
-    label: 'Дата',
+    label: 'Date',
     width: 100,
   },
   {
     index: 'description',
-    label: 'Краткое описание',
+    label: 'Description',
     width: 200,
     render: item => (<div>{item.description}</div>),
   },
@@ -46,7 +46,7 @@ const getGrid = params => [
 const items = [
   {
     id: '1',
-    title: 'Live',
+    name: 'Live',
     created: '23.07.1991',
     description: 'Hello Heloo',
   },
@@ -70,7 +70,7 @@ export default class App extends Component {
           items={items}
           grid={getGrid(params)}
           emptyMessage={(
-            <div style={{ fontSize: '0.7em', lineHeight: '1.3em' }}>В таблице нет ни одного элемента</div>
+            <div style={{ fontSize: '0.7em', lineHeight: '1.3em' }}>There are no items yet.</div>
           )}
         />
       </div>
