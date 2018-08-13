@@ -25,7 +25,6 @@ const getGrid = params => [
     render: ({ id, title }) => (
       <a
         onClick={params.onLinkClick}
-        href="#"
       >
         #{id} {title}
       </a>
@@ -70,13 +69,8 @@ export default class App extends Component {
         <WireTable
           items={items}
           grid={getGrid(params)}
-          sortIndex={'id'}
-          updateItem={() => {}}
-          changeSort={this.changeSort}
           emptyMessage={(
-            isSimple
-              ? <div style={{ fontSize: '0.7em', lineHeight: '1.3em' }}>Пока не добавлено ни одного экспоната. Обратите внимание, что внутри данной<br />коллекции вложены другие коллекции, в которых могут быть экспонаты. Перейти к ним<br />можно из меню коллекций.</div>
-              : 'Пока не добавлено ни одного экспоната.'
+            <div style={{ fontSize: '0.7em', lineHeight: '1.3em' }}>В таблице нет ни одного элемента</div>
           )}
         />
       </div>

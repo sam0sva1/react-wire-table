@@ -57,9 +57,6 @@ export default class App extends Component {
         <WireTable
           items={items}
           grid={getGrid(params)}
-          sortIndex={'id'}
-          updateItem={() => {}}
-          changeSort={this.changeSort}
           emptyMessage={(
             isSimple
               ? <div style={{ fontSize: '0.7em', lineHeight: '1.3em' }}>Пока не добавлено ни одного экспоната. Обратите внимание, что внутри данной<br />коллекции вложены другие коллекции, в которых могут быть экспонаты. Перейти к ним<br />можно из меню коллекций.</div>
