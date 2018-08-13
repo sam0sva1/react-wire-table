@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Kit from '../tableKit/TableKit';
-import { withContext } from '../context';
+import { withTableContext } from '../context';
 
 const getEmptyCells = (item, { width }, prefix) => {
   const cells = [];
@@ -34,7 +34,7 @@ const getCells = (item, grid, context) => grid.map((source) => {
   return <TableCell key={`${index}${item.id}`} item={item} {...source} />;
 });
 
-const TableCell = withContext((props) => {
+const TableCell = withTableContext((props) => {
   const {
     item, index, width, classList, context,
   } = props;
@@ -51,7 +51,7 @@ const TableCell = withContext((props) => {
   );
 });
 
-const Wrapper = withContext((props) => {
+const Wrapper = withTableContext((props) => {
   const {
     itemId, index, width, children, classList, context,
   } = props;

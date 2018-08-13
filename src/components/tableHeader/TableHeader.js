@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import TableHeaderCell from '../tableHeaderCell/TableHeaderCell';
-import { withContext } from '../context';
+import { withTableContext } from '../context';
 
 class TableHeader extends Component {
   render() {
@@ -18,4 +18,4 @@ class TableHeader extends Component {
   }
 }
 
-export default withContext(TableHeader);
+export default withTableContext(TableHeader);

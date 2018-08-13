@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import Icon from '../tableIcon/TableIcon';
 import TableKit from '../tableKit/TableKit';
-import { withContext } from '../context';
+import { withTableContext } from '../context';
 
 
 const getDirectionPic = (name, sortField, sortOrder) => {
@@ -74,4 +74,4 @@ const TableHeaderCell = ({
   );
 };
 
-export default withContext(TableHeaderCell);
+export default withTableContext(TableHeaderCell);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TableRow from '../tableRow/TableRow';
-import { withContext } from '../context/index';
+import { withTableContext } from '../context/index';
 
 
 class TableBody extends Component {
@@ -29,4 +29,4 @@ class TableBody extends Component {
   }
 }
 
-export default withContext(TableBody);
+export default withTableContext(TableBody);

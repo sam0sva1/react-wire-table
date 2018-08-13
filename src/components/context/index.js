@@ -5,7 +5,7 @@ const defaultValue = {};
 
 const { Provider, Consumer } = createContext(defaultValue);
 
-const withContext = Comp => class extends Component {
+const withTableContext = Comp => class extends Component {
   render() {
     return (
       <Consumer>
@@ -20,5 +20,5 @@ const withContext = Comp => class extends Component {
 export {
   Provider,
   Consumer,
-  withContext,
+  withTableContext,
 };
