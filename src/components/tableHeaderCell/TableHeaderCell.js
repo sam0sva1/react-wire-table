@@ -60,10 +60,9 @@ const TableHeaderCell = ({
   return (
     <a
       role="button"
-      aria-
       style={styles}
       className={getClassLine(index, sort, sortField, sortOrder, classPrefix )}
-      onClick={() => { if (sort) changeSort(index); }}
+      onClick={(event) => { event.preventDefault(); if (sort) changeSort(index); }}
     >
       { label || ' ' }
       { (sort && empty)

@@ -12,7 +12,6 @@ const getGrid = params => [
     render: ({ id, title }) => (
       <a
         onClick={params.onLinkClick}
-        href="#"
       >
         #{id} {title}
       </a>

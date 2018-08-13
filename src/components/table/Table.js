@@ -83,7 +83,7 @@ class Table extends Component {
     return items;
   }
 
-  getChildContext = () => {
+  getContextValue = () => {
     const { sortField, sortOrder } = this.state;
     const { grid, items = [], classPrefix } = this.props;
 
@@ -120,7 +120,7 @@ class Table extends Component {
 
     const ifNoWidth = computedWidth ? { width: `${computedWidth}px` } : {};
 
-    const context = this.getChildContext();
+    const context = this.getContextValue();
 
     return (
       <Provider value={context}>
