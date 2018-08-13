@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import WireTable from 'react-wire-table';
 
-import WireTable from 'react-wire-table'
+import './index.css';
 
 
 const getGrid = params => [

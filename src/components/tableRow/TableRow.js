@@ -1,30 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { getCells, getEmptyCells } from '../tableCell/TableCell';
+import { withContext } from '../context';
 
-const TableRow = ({ item }, { grid }) => {
+
+const TableRow = ({ item, context }) => {
+  const { grid, classPrefix } = context;
+
   if (item.length) {
     return (
       <div
-        className="rwt-body__row rwt-row_empty"
+        className={`${classPrefix}table-body__row ${classPrefix}table-row_empty`}
       >
-        {getEmptyCells(item, grid)}
+        {getEmptyCells(item, grid, classPrefix)}
       </div>
     );
   }
 
   return (
     <div
-      className={`rwt-body__row rwt-row${item.selected ? ' rwt-row_selected' : ''}`}
+      className={`${classPrefix}table-body__row ${classPrefix}table-row${item.selected ? ` ${classPrefix}table-row_selected` : ''}`}
     >
-      {getCells(item, grid)}
+      {getCells(item, grid, context)}
     </div>
   );
 };
 
-TableRow.contextTypes = {
-  grid: PropTypes.array,
-};
-
-export default TableRow;
+export default withContext(TableRow);

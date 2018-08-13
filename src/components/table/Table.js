@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
+import { Provider } from '../context';
 import Body from '../tableBody/TableBody';
 import Header from '../tableHeader/TableHeader';
+
 
 function getComputedWidth(grid) {
   if (grid[grid.length - 1].width === 'auto') {
@@ -84,7 +85,10 @@ class Table extends Component {
 
   getChildContext = () => {
     const { sortField, sortOrder } = this.state;
-    const { grid, items = [] } = this.props;
+    const { grid, items = [], classPrefix } = this.props;
+
+    const ifNotEmptyPrefix = typeof classPrefix === 'string' ? `${classPrefix}-` : '';
+
     return {
       grid,
       sorting: {
@@ -93,6 +97,7 @@ class Table extends Component {
         changeSort: this.changeSort,
         empty: items.length === 0,
       },
+      classPrefix: typeof classPrefix === 'undefined' ? 'rwt-' : ifNotEmptyPrefix,
     };
   }
 
@@ -115,27 +120,26 @@ class Table extends Component {
 
     const ifNoWidth = computedWidth ? { width: `${computedWidth}px` } : {};
 
+    const context = this.getChildContext();
+
     return (
-      <div
-        className={`rwt-table${isEmpty ? ' rwt-table_empty' : ''}`}
-        style={
-          width
-            ? { width }
-            : ifNoWidth
-        }
-      >
+      <Provider value={context}>
+        <div
+          className={`${context.classPrefix}table${isEmpty ? ` ${context.classPrefix}table_empty` : ''}`}
+          style={
+            width
+              ? { width }
+              : ifNoWidth
+          }
+        >
 
-        <Header {...this.state} grid={grid} items={sortedItems} />
-        <Body items={sortedItems} emptyMessage={emptyMessage} />
+          <Header {...this.state} grid={grid} items={sortedItems} />
+          <Body items={sortedItems} emptyMessage={emptyMessage} />
 
-      </div>
+        </div>
+      </Provider>
     );
   }
 }
-
-Table.childContextTypes = {
-  grid: PropTypes.array,
-  sorting: PropTypes.object,
-};
 
 export default Table;

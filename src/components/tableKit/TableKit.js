@@ -21,7 +21,7 @@ function SelectionCell(props) {
       style={width ? { width, minWidth: width } : { width: defaultWidth, minWidth: defaultWidth }}
       className={`rwt-table__cell rwt-table__cell_selection${classList ? ` ${classList}` : ''}`}
     >
-      <button onClick={onClick(id)}>
+      <button type="button" onClick={onClick(id)}>
         <Checkbox checked={selected} />
       </button>
     </div>

@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import Icon from '../tableIcon/TableIcon';
 import TableKit from '../tableKit/TableKit';
+import { withContext } from '../context';
+
 
 const getDirectionPic = (name, sortField, sortOrder) => {
   if (sortField === name && sortOrder === 'asc') {
@@ -16,26 +17,29 @@ const getDirectionPic = (name, sortField, sortOrder) => {
   return <Icon type="unfold_more" fill="#8d9aa7" />;
 };
 
-const getClassLine = (index, sort, sortField, sortOrder) => {
-  let classes = `rwt-row__cell rwt-cell rwt-cell_${index}`;
+const getClassLine = (index, sort, sortField, sortOrder, prefix) => {
+  let classes = `${prefix}table-row__cell ${prefix}table-cell ${prefix}cell_${index}`;
 
   if (sort) {
-    classes = `${classes} rwt-cell_sortable`;
+    classes = `${classes} ${prefix}cell_sortable`;
   }
 
   if (sortField && sortOrder && sortField === index) {
-    classes = `${classes} rwt-cell_sorted`;
+    classes = `${classes} ${prefix}cell_sorted`;
   }
 
   return classes;
 };
 
 const TableHeaderCell = ({
-  index, label, width, sort, kit, items, headerRender: HeaderRender, config,
-}, context) => {
+  index, label, width, sort, kit, items, headerRender: HeaderRender, config, context,
+}) => {
   const {
-    sortField, sortOrder, changeSort, empty,
-  } = context.sorting;
+    sorting: {
+      sortField, sortOrder, changeSort, empty,
+    },
+    classPrefix,
+  } = context;
 
   const styles = {};
 
@@ -54,9 +58,11 @@ const TableHeaderCell = ({
   }
 
   return (
-    <div
+    <a
+      role="button"
+      aria-
       style={styles}
-      className={getClassLine(index, sort, sortField, sortOrder)}
+      className={getClassLine(index, sort, sortField, sortOrder, classPrefix )}
       onClick={() => { if (sort) changeSort(index); }}
     >
       { label || ' ' }
@@ -64,13 +70,8 @@ const TableHeaderCell = ({
         ? <Icon type="unfold_more" fill="#8d9aa7" />
         : (sort && sortField && sortOrder) && getDirectionPic(index, sortField, sortOrder)
       }
-    </div>
+    </a>
   );
 };
 
-TableHeaderCell.contextTypes = {
-  grid: PropTypes.array,
-  sorting: PropTypes.object,
-};
-
-export default TableHeaderCell;
+export default withContext(TableHeaderCell);

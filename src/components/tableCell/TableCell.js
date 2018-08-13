@@ -1,22 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Kit from '../tableKit/TableKit';
+import { withContext } from '../context';
 
-const getEmptyCells = (item, { width }) => {
+const getEmptyCells = (item, { width }, prefix) => {
   const cells = [];
   for (let i = 0; i < 3; i + 1) {
     cells.push(
       <div
         style={width ? { width, minWidth: width } : {}}
-        className="rwt-row__cell rwt-cell rwt-cell_empty"
+        className={`${prefix}row__cell ${prefix}cell ${prefix}cell_empty`}
       />,
     );
   }
   return cells;
 };
 
-const getCells = (item, grid) => grid.map((source) => {
+const getCells = (item, grid, context) => grid.map((source) => {
   const { kit, render, index } = source;
   if (kit) {
     if (Kit[kit]) {
@@ -25,7 +25,7 @@ const getCells = (item, grid) => grid.map((source) => {
     }
   } else if (render) {
     return (
-      <Wrapper key={`${index}${item.id}`} {...source} >
+      <Wrapper key={`${index}${item.id}`} {...source}>
         {render(item)}
       </Wrapper>
     );
@@ -34,37 +34,38 @@ const getCells = (item, grid) => grid.map((source) => {
   return <TableCell key={`${index}${item.id}`} item={item} {...source} />;
 });
 
-const TableCell = ({ item, index, width, classList }, { sorting }) => {
-  const isSorted = sorting.sortField === index ? ' rwt-cell_sorted' : '';
+const TableCell = withContext((props) => {
+  const {
+    item, index, width, classList, context,
+  } = props;
+  const { sorting, classPrefix } = context;
+  const isSorted = sorting.sortField === index ? ` ${classPrefix}cell_sorted` : '';
+
   return (
     <div
       style={width ? { width, minWidth: width } : {}}
-      className={`rwt-row__cell rwt-cell${isSorted} rwt-cell_${index}${classList ? ` ${classList}` : ''}`}
+      className={`${classPrefix}table-row__cell ${classPrefix}table-cell${isSorted} ${classPrefix}table-cell_${index}${classList ? ` ${classList}` : ''}`}
     >
       { item[index] || '' }
     </div>
   );
-};
+});
 
-TableCell.contextTypes = {
-  sorting: PropTypes.object,
-};
-
-const Wrapper = ({ itemId, index, width, children, classList }, { sorting }) => {
-  const isSorted = sorting.sortField === index ? ' rwt-cell_sorted' : '';
+const Wrapper = withContext((props) => {
+  const {
+    itemId, index, width, children, classList, context,
+  } = props;
+  const { sorting, classPrefix } = context;
+  const isSorted = sorting.sortField === index ? ` ${classPrefix}table-cell_sorted` : '';
   return (
     <div
       style={width ? { width, minWidth: width } : {}}
-      className={`rwt-row__cell rwt-cell${isSorted} rwt-cell_${index}${classList ? ` ${classList}` : ''}`}
+      className={`${classPrefix}table-row__cell ${classPrefix}table-cell${isSorted} ${classPrefix}table-cell_${index}${classList ? ` ${classList}` : ''}`}
     >
       { children }
     </div>
   );
-};
-
-Wrapper.contextTypes = {
-  sorting: PropTypes.object,
-};
+});
 
 export {
   getCells,
