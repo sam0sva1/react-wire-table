@@ -81,7 +81,7 @@ export default class App extends Component {
 
 ## Base classes
 
-```
+```css
 .rwt-table {
   display: flex;
 }
