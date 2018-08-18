@@ -1,5 +1,6 @@
 .rwt-table {
-
+  display: flex;
+  flex-direction: column;
 }
 
 .rwt-table__header {
@@ -7,7 +8,7 @@
 }
 
 .rwt-table-header {
-
+  background-color: rgba(0, 185, 255, 0.1);
 }
 
 .rwt-table__body {
@@ -27,7 +28,7 @@
 }
 
 .rwt-table-row {
-
+  display: flex;
 }
 
 .rwt-table-row__cell {
@@ -35,5 +36,17 @@
 }
 
 .rwt-table-cell {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.rwt-table-cell_in-header {
+
+}
+
+.rwt-table-cell_in-body {
 
 }

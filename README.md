@@ -84,6 +84,7 @@ export default class App extends Component {
 ```css
 .rwt-table {
   display: flex;
+  flex-direction: column;
 }
 
 .rwt-table__header {
