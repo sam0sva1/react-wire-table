@@ -18,6 +18,7 @@ const getGrid = params => [
   },
   {
     index: 'created',
+    path: 'info.created',
     label: 'Date',
     width: 100,
     sort: true,
@@ -35,26 +36,34 @@ const items = [
   {
     id: '1',
     name: 'Beatrice',
-    created: '23.12.1993',
     description: 'Lil girl',
+    info: {
+      created: '23.12.1993',
+    },
   },
   {
     id: '2',
     name: 'Vincent',
-    created: '14.02.1991',
     description: 'Man, you know!',
+    info: {
+      created: '14.02.1991',
+    },
   },
   {
     id: '3',
     name: 'Adolph',
-    created: '23.07.1991',
     description: 'Boy. Oh boy!',
+    info: {
+      created: '23.07.1991',
+    },
   },
   {
     id: '4',
     name: 'Guche',
-    created: '01.01.1985',
     description: 'Gang bang.',
+    info: {
+      created: '01.01.1985',
+    },
   },
 ];
 

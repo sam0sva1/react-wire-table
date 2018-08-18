@@ -3,26 +3,6 @@ import React from 'react';
 import Kit from '../tableKit/TableKit';
 import { withTableContext } from '../context';
 
-function select(key, kit) {
-  if (typeof key === 'string' && key) {
-    const parts = key.replace(']', '').replace('[', '.').split('.');
-    const len = parts.length;
-
-    let target = kit;
-
-    for (let i = 0; i < len; i += 1) {
-      if (typeof target === 'object' && parts[i] in target) {
-        target = target[parts[i]];
-      } else {
-        return undefined;
-      }
-    }
-
-    return target;
-  }
-
-  return undefined;
-};
 
 const getEmptyCells = (item, { width }, prefix) => {
   const cells = [];
@@ -56,13 +36,17 @@ const getCells = (item, grid, context) => grid.map((source) => {
 });
 
 const TableCell = withTableContext((props) => {
+  console.log('source', props);
   const {
     item, index, path, width, classList, context,
   } = props;
-  const { sorting, classPrefix } = context;
+  const { sorting, classPrefix, select } = context;
   const isSorted = sorting.sortField === index ? ` ${classPrefix}cell_sorted` : '';
 
-  const value = select(path) || item[index];
+  console.log('path', path);
+  const selectedValue = select(path, item);
+  console.log('selectedValue', selectedValue);
+  const value = selectedValue || item[index];
 
   return (
     <div

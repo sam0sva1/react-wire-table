@@ -5,6 +5,27 @@ import Body from '../tableBody/TableBody';
 import Header from '../tableHeader/TableHeader';
 
 
+function select(key, kit) {
+  if (typeof key === 'string' && key) {
+    const parts = key.replace(']', '').replace('[', '.').split('.');
+    const len = parts.length;
+
+    let target = kit;
+
+    for (let i = 0; i < len; i += 1) {
+      if (typeof target === 'object' && parts[i] in target) {
+        target = target[parts[i]];
+      } else {
+        return undefined;
+      }
+    }
+
+    return target;
+  }
+
+  return undefined;
+}
+
 function getComputedWidth(grid) {
   if (grid[grid.length - 1].width === 'auto') {
     return null;
@@ -23,8 +44,9 @@ function getComputedWidth(grid) {
 }
 
 const prepare = (incoming, field) => {
-  const item = incoming[field] || incoming;
-  return item.toLowerCase().replace(' ', '');
+  const value = select(field, incoming);
+  const item = value || incoming;
+  return typeof item === 'string' ? item.toLowerCase().replace(' ', '') : item;
 };
 
 const mainSorting = (a, b, dir) => {
@@ -80,8 +102,10 @@ class Table extends Component {
     const { sortField, sortOrder } = this.state;
     const { grid } = this.props;
 
-    if (sortField && grid.find(column => column.index === sortField)) {
-      return sorter(items, sortField, sortOrder);
+    const column = grid.find(curColumn => curColumn.index === sortField);
+
+    if (sortField && column) {
+      return sorter(items, (column.path || sortField), sortOrder);
     }
 
     return items;
@@ -102,6 +126,7 @@ class Table extends Component {
         empty: items.length === 0,
       },
       classPrefix: typeof classPrefix === 'undefined' ? 'rwt-' : ifNotEmptyPrefix,
+      select,
     };
   }
 
