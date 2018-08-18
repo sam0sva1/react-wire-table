@@ -31,9 +31,10 @@ const getClassLine = (index, sort, sortField, sortOrder, prefix) => {
   return classes;
 };
 
-const TableHeaderCell = ({
-  index, label, width, sort, kit, items, headerRender: HeaderRender, config, context,
-}) => {
+const TableHeaderCell = ({ headerRender: HeaderRender, ...props }) => {
+  const {
+    index, label, width, sort, kit, items, config, context,
+  } = props;
   const {
     sorting: {
       sortField, sortOrder, changeSort, empty,
@@ -53,7 +54,7 @@ const TableHeaderCell = ({
 
   if (HeaderRender) {
     return (
-      <HeaderRender {...config} items={items} />
+      <HeaderRender {...props} items={items} />
     );
   }
 
@@ -64,10 +65,18 @@ const TableHeaderCell = ({
       className={getClassLine(index, sort, sortField, sortOrder, classPrefix )}
       onClick={(event) => { event.preventDefault(); if (sort) changeSort(index); }}
     >
-      { label || ' ' }
-      { (sort && empty)
-        ? <Icon type="unfold_more" fill="#8d9aa7" />
-        : (sort && sortField && sortOrder) && getDirectionPic(index, sortField, sortOrder)
+      {
+        HeaderRender
+          ? <HeaderRender {...props} items={items} />
+          : (
+            <Fragment>
+              { label || ' ' }
+              { (sort && empty)
+                ? <Icon type="unfold_more" fill="#8d9aa7" />
+                : (sort && sortField && sortOrder) && getDirectionPic(index, sortField, sortOrder)
+              }
+            </Fragment>
+          )
       }
     </a>
   );

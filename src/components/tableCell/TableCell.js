@@ -3,6 +3,27 @@ import React from 'react';
 import Kit from '../tableKit/TableKit';
 import { withTableContext } from '../context';
 
+function select(key, kit) {
+  if (typeof key === 'string' && key) {
+    const parts = key.replace(']', '').replace('[', '.').split('.');
+    const len = parts.length;
+
+    let target = kit;
+
+    for (let i = 0; i < len; i += 1) {
+      if (typeof target === 'object' && parts[i] in target) {
+        target = target[parts[i]];
+      } else {
+        return undefined;
+      }
+    }
+
+    return target;
+  }
+
+  return undefined;
+};
+
 const getEmptyCells = (item, { width }, prefix) => {
   const cells = [];
   for (let i = 0; i < 3; i + 1) {
@@ -36,17 +57,19 @@ const getCells = (item, grid, context) => grid.map((source) => {
 
 const TableCell = withTableContext((props) => {
   const {
-    item, index, width, classList, context,
+    item, index, path, width, classList, context,
   } = props;
   const { sorting, classPrefix } = context;
   const isSorted = sorting.sortField === index ? ` ${classPrefix}cell_sorted` : '';
+
+  const value = select(path) || item[index];
 
   return (
     <div
       style={width ? { width, minWidth: width } : {}}
       className={`${classPrefix}table-row__cell ${classPrefix}table-cell${isSorted} ${classPrefix}table-cell_${index}${classList ? ` ${classList}` : ''}`}
     >
-      { item[index] || '' }
+      { value || '' }
     </div>
   );
 });

@@ -58,11 +58,15 @@ class Table extends Component {
   }
 
   changeSort = (newSortField) => {
+    const { sortIndex } = this.props;
     let { sortField, sortOrder } = this.state;
 
     if (newSortField !== sortField) {
       sortOrder = 'asc';
       sortField = newSortField;
+    } else if (newSortField === sortField && newSortField !== sortIndex && sortOrder === 'desc') {
+      sortField = sortIndex;
+      sortOrder = 'asc';
     } else if (newSortField === sortField && sortOrder === 'asc') {
       sortOrder = 'desc';
     } else if (newSortField === sortField && sortOrder === 'desc') {
