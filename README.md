@@ -79,6 +79,62 @@ export default class App extends Component {
 }
 ```
 
+## Base classes
+
+```
+.rwt-table {
+  display: flex;
+}
+
+.rwt-table__header {
+
+}
+
+.rwt-table-header {
+  background-color: rgba(0, 185, 255, 0.1);
+}
+
+.rwt-table__body {
+
+}
+
+.rwt-table-body {
+
+}
+
+.rwt-table-header__row {
+
+}
+
+.rwt-table-body__row {
+
+}
+
+.rwt-table-row {
+  display: flex;
+}
+
+.rwt-table-row__cell {
+
+}
+
+.rwt-table-cell {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.rwt-table-cell_in-header {
+
+}
+
+.rwt-table-cell_in-body {
+
+}
+```
+
 ## License
 
 MIT © [sam0sva1](https://github.com/sam0sva1)

@@ -5,14 +5,15 @@ import WireTable from 'react-wire-table';
 const getGrid = params => [
   {
     index: 'name',
+    path: 'info.name',
     label: 'Title',
     width: 150,
     sort: true,
-    render: ({ id, name }) => (
+    render: ({ id, info }) => (
       <a
         onClick={params.onLinkClick}
       >
-        #{id} {name}
+        #{id} {info.name}
       </a>
     ),
   },
@@ -35,33 +36,33 @@ const items = [
 
   {
     id: '1',
-    name: 'Beatrice',
     description: 'Lil girl',
     info: {
+      name: 'Beatrice',
       created: '23.12.1993',
     },
   },
   {
     id: '2',
-    name: 'Vincent',
     description: 'Man, you know!',
     info: {
+      name: 'Vincent',
       created: '14.02.1991',
     },
   },
   {
     id: '3',
-    name: 'Adolph',
     description: 'Boy. Oh boy!',
     info: {
+      name: 'Adolph',
       created: '23.07.1991',
     },
   },
   {
     id: '4',
-    name: 'Guche',
     description: 'Gang bang.',
     info: {
+      name: 'Guche',
       created: '01.01.1985',
     },
   },
@@ -76,8 +77,6 @@ export default class App extends Component {
         alert('onLinkClick');
       },
     };
-
-    const isSimple = false;
 
     return (
       <div>

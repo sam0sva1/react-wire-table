@@ -51,7 +51,7 @@ body {
 }
 
 .rwt-table__header {
-  width: 100%;
+
 }
 
 .rwt-table-header {
@@ -59,7 +59,7 @@ body {
 }
 
 .rwt-table__body {
-  width: 100%;
+
 }
 
 .rwt-table-body {
@@ -84,5 +84,17 @@ body {
 
 .rwt-table-cell {
   display: flex;
-  padding: 8px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
 }
+
+.rwt-table-cell_in-header {
+
+}
+
+.rwt-table-cell_in-body {
+
+}
+

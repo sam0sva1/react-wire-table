@@ -36,22 +36,19 @@ const getCells = (item, grid, context) => grid.map((source) => {
 });
 
 const TableCell = withTableContext((props) => {
-  console.log('source', props);
   const {
     item, index, path, width, classList, context,
   } = props;
   const { sorting, classPrefix, select } = context;
   const isSorted = sorting.sortField === index ? ` ${classPrefix}cell_sorted` : '';
 
-  console.log('path', path);
   const selectedValue = select(path, item);
-  console.log('selectedValue', selectedValue);
   const value = selectedValue || item[index];
 
   return (
     <div
       style={width ? { width, minWidth: width } : {}}
-      className={`${classPrefix}table-row__cell ${classPrefix}table-cell${isSorted} ${classPrefix}table-cell_${index}${classList ? ` ${classList}` : ''}`}
+      className={`${classPrefix}table-row__cell ${classPrefix}table-cell${isSorted} ${classPrefix}table-cell_in-body ${classPrefix}table-cell_${index}${classList ? ` ${classList}` : ''}`}
     >
       { value || '' }
     </div>
@@ -67,7 +64,7 @@ const Wrapper = withTableContext((props) => {
   return (
     <div
       style={width ? { width, minWidth: width } : {}}
-      className={`${classPrefix}table-row__cell ${classPrefix}table-cell${isSorted} ${classPrefix}table-cell_${index}${classList ? ` ${classList}` : ''}`}
+      className={`${classPrefix}table-row__cell ${classPrefix}table-cell${isSorted} ${classPrefix}table-cell_in-body ${classPrefix}table-cell_${index}${classList ? ` ${classList}` : ''}`}
     >
       { children }
     </div>
