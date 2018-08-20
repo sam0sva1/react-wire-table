@@ -10,6 +10,20 @@
 npm install --save react-wire-table
 ```
 
+## Grid properties
+```javascript
+{
+  index: 'name', // inner column naming and a key to a property if an item is flat
+  label: 'Label', // Label for a column
+  width: 100, // px
+  path: 'path.to.property', // item['path']['to']['property'] if item is not flat
+  processFunc: value => `#${value}`, // to process data before display
+  placeholder: 'empty', // if no data provided
+  headerRender: () => <div>Some data</div>, // custom view for a table column header
+  reader: () => <div>Some data</div>, // for complex view of a cell
+}
+```
+
 ## Usage
 
 ```jsx
