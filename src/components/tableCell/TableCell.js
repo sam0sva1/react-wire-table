@@ -42,7 +42,7 @@ const TableCell = withTableContext((props) => {
   const { sorting, classPrefix, select } = context;
   const isSorted = sorting.sortField === index ? ` ${classPrefix}cell_sorted` : '';
 
-  const selectedValue = select(path, item);
+  const selectedValue = select(item, path);
   const value = selectedValue || item[index];
 
   return (

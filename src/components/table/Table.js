@@ -5,7 +5,7 @@ import Body from '../tableBody/TableBody';
 import Header from '../tableHeader/TableHeader';
 
 
-function select(key, kit) {
+function select(kit, key) {
   if (typeof key === 'string' && key) {
     const parts = key.replace(']', '').replace('[', '.').split('.');
     const len = parts.length;
@@ -44,7 +44,7 @@ function getComputedWidth(grid) {
 }
 
 const prepare = (incoming, field) => {
-  const value = select(field, incoming);
+  const value = select(incoming, field);
   const item = value || incoming;
   return typeof item === 'string' ? item.toLowerCase().replace(' ', '') : item;
 };
