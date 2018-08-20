@@ -37,13 +37,20 @@ const getCells = (item, grid, context) => grid.map((source) => {
 
 const TableCell = withTableContext((props) => {
   const {
-    item, index, path, width, classList, context,
+    item, index, path, placeholder, processFunc, width, classList, context,
   } = props;
   const { sorting, classPrefix, select } = context;
   const isSorted = sorting.sortField === index ? ` ${classPrefix}cell_sorted` : '';
 
-  const selectedValue = select(item, path);
-  const value = selectedValue || item[index];
+  let value = (path ? select(item, path) : item[index]);
+
+  if (typeof processFunc === 'function') {
+    value = processFunc(value);
+  }
+
+  if (typeof placeholder !== 'undefined') {
+    value = value || placeholder;
+  }
 
   return (
     <div
@@ -59,6 +66,7 @@ const Wrapper = withTableContext((props) => {
   const {
     itemId, index, width, children, classList, context,
   } = props;
+
   const { sorting, classPrefix } = context;
   const isSorted = sorting.sortField === index ? ` ${classPrefix}table-cell_sorted` : '';
   return (

@@ -52,12 +52,6 @@ const TableHeaderCell = ({ headerRender: HeaderRender, ...props }) => {
     styles.minWidth = TableKit[kit].width;
   }
 
-  if (HeaderRender) {
-    return (
-      <HeaderRender {...props} items={items} />
-    );
-  }
-
   return (
     <a
       role="button"
