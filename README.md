@@ -37,6 +37,7 @@ const getGrid = params => [
   },
   {
     index: 'description',
+    path: 'info.description',
     label: 'Description',
     width: 200,
     render: item => (<div>{item.description}</div>),
@@ -48,7 +49,9 @@ const items = [
     id: '1',
     name: 'Live',
     created: '23.07.1991',
-    description: 'Hello Heloo',
+    info: {
+      description: 'Hello World',
+    },
   },
 ];
 
@@ -61,8 +64,6 @@ export default class App extends Component {
         alert('onLinkClick');
       },
     };
-
-    const isSimple = false;
 
     return (
       <div>
