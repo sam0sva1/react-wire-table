@@ -32,6 +32,7 @@ const getGrid = params => [
   },
   {
     index: 'created',
+    path: 'info.created',
     label: 'Date',
     width: 100,
   },
@@ -48,9 +49,9 @@ const items = [
   {
     id: '1',
     name: 'Live',
-    created: '23.07.1991',
+    description: 'Hello World',
     info: {
-      description: 'Hello World',
+      created: '23.07.1991',
     },
   },
 ];
