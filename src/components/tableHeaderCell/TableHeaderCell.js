@@ -55,6 +55,7 @@ const TableHeaderCell = ({ headerRender: HeaderRender, ...props }) => {
   return (
     <a
       role="button"
+      key={index}
       style={styles}
       className={getClassLine(index, sort, sortField, sortOrder, classPrefix )}
       onClick={(event) => { event.preventDefault(); if (sort) changeSort(index); }}

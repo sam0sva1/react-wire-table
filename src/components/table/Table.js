@@ -13,7 +13,7 @@ function select(kit, key) {
     let target = kit;
 
     for (let i = 0; i < len; i += 1) {
-      if (typeof target === 'object' && parts[i] in target) {
+      if (target && typeof target === 'object' && parts[i] in target) {
         target = target[parts[i]];
       } else {
         return undefined;

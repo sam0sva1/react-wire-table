@@ -13,13 +13,16 @@ function SelectionCell(props) {
         onClick = () => {},
       },
     },
+    context: {
+      classPrefix,
+    },
   } = props;
   const defaultWidth = `${SelectionCell.width}px`;
 
   return (
     <div
       style={width ? { width, minWidth: width } : { width: defaultWidth, minWidth: defaultWidth }}
-      className={`rwt-table__cell rwt-table__cell_selection${classList ? ` ${classList}` : ''}`}
+      className={`${classPrefix}table-row__cell ${classPrefix}table-cell ${classPrefix}table-cell_in-body ${classPrefix}table-cell_selection${classList ? ` ${classList}` : ''}`}
     >
       <button type="button" onClick={onClick(id)}>
         <Checkbox checked={selected} />

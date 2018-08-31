@@ -21,8 +21,8 @@ const getCells = (item, grid, context) => grid.map((source) => {
   const { kit, render, index } = source;
   if (kit) {
     if (Kit[kit]) {
-      const Component = Kit[kit];
-      return <Component key={`${index}${item.id}`} item={item} source={source} />;
+      const KitComponent = Kit[kit];
+      return <KitComponent key={`${index}${item.id}`} item={item} source={source} context={context} />;
     }
   } else if (render) {
     return (
