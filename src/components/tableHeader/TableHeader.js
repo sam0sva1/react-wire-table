@@ -11,7 +11,7 @@ class TableHeader extends Component {
     return (
       <div className={`${classPrefix}table__header ${classPrefix}table-header`}>
         <div className={`${classPrefix}table-header__row ${classPrefix}table-row`}>
-          { grid.map(col => <TableHeaderCell key={col.index} {...col} items={items} />) }
+          { grid.map((col, idx) => <TableHeaderCell key={col.index || idx} {...col} items={items} />) }
         </div>
       </div>
     );
