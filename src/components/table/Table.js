@@ -98,7 +98,8 @@ class Table extends Component {
     this.setState({ sortField, sortOrder });
   }
 
-  sortItems = (items) => {
+  sortItems = (draftItems) => {
+    const items = [ ...draftItems ];
     const { sortField, sortOrder } = this.state;
     const { grid } = this.props;
 

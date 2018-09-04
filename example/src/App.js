@@ -33,7 +33,6 @@ const getGrid = params => [
 ];
 
 const items = [
-
   {
     id: '1',
     description: 'Lil girl',
