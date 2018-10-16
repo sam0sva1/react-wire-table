@@ -139,7 +139,7 @@ class Table extends Component {
     if (!grid) {
       return (
         <div>
-          Provide a grid for Table
+          Provide a grid for your Table
         </div>
       );
     }

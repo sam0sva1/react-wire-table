@@ -7,7 +7,7 @@ const getGrid = params => [
     index: 'name',
     path: 'info.name',
     label: 'Title',
-    width: 150,
+    width: '25%',
     sort: true,
     render: ({ id, info }) => (
       <a
@@ -18,16 +18,23 @@ const getGrid = params => [
     ),
   },
   {
+    index: 'age',
+    path: 'info.age',
+    label: 'Age',
+    width: '15%',
+    sort: true,
+  },
+  {
     index: 'created',
     path: 'info.created',
     label: 'Date',
-    width: 100,
+    width: '30%',
     sort: true,
   },
   {
     index: 'description',
     label: 'Description',
-    width: 200,
+    width: '25%',
     render: item => (<div>{item.description}</div>),
   },
 ];
@@ -38,6 +45,7 @@ const items = [
     description: 'Lil girl',
     info: {
       name: 'Beatrice',
+      age: 19,
       created: '23.12.1993',
     },
   },
@@ -46,6 +54,7 @@ const items = [
     description: 'Man, you know!',
     info: {
       name: 'Vincent',
+      age: 51,
       created: '14.02.1991',
     },
   },
@@ -54,6 +63,7 @@ const items = [
     description: 'Boy. Oh boy!',
     info: {
       name: 'Adolph',
+      age: 82,
       created: '23.07.1991',
     },
   },
@@ -62,6 +72,7 @@ const items = [
     description: 'Gang bang.',
     info: {
       name: 'Guche',
+      age: 23,
       created: '01.01.1985',
     },
   },
@@ -83,6 +94,7 @@ export default class App extends Component {
           items={items}
           grid={getGrid(params)}
           sortIndex={'name'}
+          width="100%"
           emptyMessage={(
             <div style={{ fontSize: '0.7em', lineHeight: '1.3em' }}>There are no items yet.</div>
           )}

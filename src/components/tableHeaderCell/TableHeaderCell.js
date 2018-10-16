@@ -18,7 +18,7 @@ const getDirectionPic = (name, sortField, sortOrder) => {
 };
 
 const getClassLine = (index, sort, sortField, sortOrder, prefix) => {
-  let classes = `${prefix}table-row__cell ${prefix}table-cell ${prefix}table-cell_in-header ${prefix}cell_${index}`;
+  let classes = `${prefix}table-row__cell ${prefix}table-cell ${prefix}table-cell_in-header ${prefix}table-cell_${index}`;
 
   if (sort) {
     classes = `${classes} ${prefix}cell_sortable`;
