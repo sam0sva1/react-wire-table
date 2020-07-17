@@ -1,122 +1,74 @@
 import * as React from 'react';
 
-import { TableContext } from '../context';
+import { TableContext } from '../../context';
 import Body from '../tableBody/TableBody';
 import Header from '../tableHeader/TableHeader';
+import { TItems, TGrid } from '../../types';
 
-
-function select(kit, key) {
-  if (typeof key === 'string' && key) {
-    const parts = key.replace(']', '').replace('[', '.').split('.');
-    const len = parts.length;
-
-    let target = kit;
-
-    for (let i = 0; i < len; i += 1) {
-      if (target && typeof target === 'object' && parts[i] in target) {
-        target = target[parts[i]];
-      } else {
-        return undefined;
-      }
-    }
-
-    return target;
-  }
-
-  return undefined;
-}
-
-function getComputedWidth(grid) {
-  if (grid[grid.length - 1].width === 'auto') {
-    return null;
-  }
-
-  return grid.reduce((sum, { width }) => {
-    const widthType = typeof width;
-    if (widthType === 'undefined') return sum;
-
-    if (widthType === 'string') {
-      return sum + Number(width.replace(/\D+/g, ''));
-    }
-
-    return sum + width;
-  }, 0);
-}
-
-const prepare = (incoming, field) => {
-  const value = select(incoming, field);
-  const item = value || incoming;
-  return typeof item === 'string' ? item.toLowerCase().replace(' ', '') : item;
-};
-
-const mainSorting = (a, b, dir) => {
-  if (dir === 'asc') {
-    if (a < b) return -1;
-    if (a > b) return 1;
-  } else {
-    if (a < b) return 1;
-    if (a > b) return -1;
-  }
-  return 0;
-};
-
-const sorter = (array, field, dir) => array.sort((a, b) => {
-  const first = prepare(a, field);
-  const second = prepare(b, field);
-
-  return mainSorting(first, second, dir);
-});
+import { getComputedWidth, sorter, selectPath } from '../../helpers';
 
 export interface ITableProps {
-
+  sortIndex: string;
+  items: TItems;
+  classPrefix?: string;
+  grid: TGrid;
+  width?: number;
+  emptyMessage?: string;
+  noHeader?: boolean;
+  cssModule?: Record<string, string>;
 }
 
-class Table extends Component {
-  constructor(props) {
+export interface ITableState {
+  sortField: string;
+  sortDirection: 'asc' | 'desc';
+}
+
+export class Table extends React.Component<ITableProps, ITableState> {
+  constructor(props: ITableProps) {
     super(props);
     const { sortIndex } = props;
 
     this.state = {
       sortField: sortIndex,
-      sortOrder: 'asc',
+      sortDirection: 'asc',
     };
   }
 
-  changeSort = (newSortField) => {
+  public changeSort(newSortField: string) {
     const { sortIndex } = this.props;
-    let { sortField, sortOrder } = this.state;
+    let { sortField, sortDirection } = this.state;
 
     if (newSortField !== sortField) {
-      sortOrder = 'asc';
+      sortDirection = 'asc';
       sortField = newSortField;
-    } else if (newSortField === sortField && newSortField !== sortIndex && sortOrder === 'desc') {
+    } else if (newSortField === sortField && newSortField !== sortIndex && sortDirection === 'desc') {
       sortField = sortIndex;
-      sortOrder = 'asc';
-    } else if (newSortField === sortField && sortOrder === 'asc') {
-      sortOrder = 'desc';
-    } else if (newSortField === sortField && sortOrder === 'desc') {
-      sortOrder = 'asc';
+      sortDirection = 'asc';
+    } else if (newSortField === sortField && sortDirection === 'asc') {
+      sortDirection = 'desc';
+    } else if (newSortField === sortField && sortDirection === 'desc') {
+      sortDirection = 'asc';
     }
 
-    this.setState({ sortField, sortOrder });
+    this.setState({ sortField, sortDirection });
   }
 
-  sortItems = (draftItems) => {
-    const items = [ ...draftItems ];
-    const { sortField, sortOrder } = this.state;
+  public sortItems(draftItems: TItems) {
+    const items = [...draftItems];
+    const { sortField, sortDirection } = this.state;
     const { grid } = this.props;
 
     const column = grid.find(curColumn => curColumn.index === sortField);
 
     if (sortField && column) {
-      return sorter(items, (column.path || sortField), sortOrder);
+      return sorter(items, (column.path || sortField), sortDirection);
     }
 
     return items;
   }
 
-  getContextValue = () => {
-    const { sortField, sortOrder } = this.state;
+  public getContextValue() {
+    const { sortField, sortDirection } = this.state;
     const { grid, items = [], classPrefix } = this.props;
 
     const ifNotEmptyPrefix = typeof classPrefix === 'string' ? `${classPrefix}-` : '';
@@ -125,18 +77,18 @@ class Table extends Component {
       grid,
       sorting: {
         sortField,
-        sortOrder,
+        sortDirection,
         changeSort: this.changeSort,
-        empty: items.length === 0,
+        isEmpty: items.length === 0,
       },
       classPrefix: typeof classPrefix === 'undefined' ? 'rwt-' : ifNotEmptyPrefix,
-      select,
+      selectPath,
     };
   }
 
-  render() {
+  public render() {
     const {
-      items = [], width, grid, emptyMessage,
+      items = [], width, grid, emptyMessage, noHeader,
     } = this.props;
 
     if (!grid) {
@@ -166,7 +118,9 @@ class Table extends Component {
           }
         >
 
-          <Header {...this.state} grid={grid} items={sortedItems} />
+          { !noHeader && (
+            <Header {...this.state} grid={grid} items={sortedItems} />
+          )}
           <Body items={sortedItems} emptyMessage={emptyMessage} />
 
         </div>
@@ -174,5 +128,3 @@ class Table extends Component {
     );
   }
 }
-
-export default Table;

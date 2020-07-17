@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Kit from '../tableKit/TableKit';
-import { withTableContext } from '../context';
+import { withTableContext } from '../../context';
 
 
 

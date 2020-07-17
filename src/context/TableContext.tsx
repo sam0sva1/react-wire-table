@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TGrid, TItem } from '../../types';
+import { TGrid, TItem } from '../types';
 
 export interface ITableContext {
   grid: TGrid;

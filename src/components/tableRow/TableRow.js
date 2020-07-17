@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { getCells, getEmptyCells } from '../tableCell/TableCell';
-import { withTableContext } from '../context';
+import { withTableContext } from '../../context';
 
 
 const TableRow = ({ item, context }) => {
