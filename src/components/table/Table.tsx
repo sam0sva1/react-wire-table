@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
-import { Provider } from '../context';
+import { TableContext } from '../context';
 import Body from '../tableBody/TableBody';
 import Header from '../tableHeader/TableHeader';
 
@@ -67,6 +67,9 @@ const sorter = (array, field, dir) => array.sort((a, b) => {
   return mainSorting(first, second, dir);
 });
 
+export interface ITableProps {
+
+}
 
 class Table extends Component {
   constructor(props) {
@@ -153,7 +156,7 @@ class Table extends Component {
     const context = this.getContextValue();
 
     return (
-      <Provider value={context}>
+      <TableContext.Provider value={context}>
         <div
           className={`${context.classPrefix}table${isEmpty ? ` ${context.classPrefix}table_empty` : ''}`}
           style={
@@ -167,7 +170,7 @@ class Table extends Component {
           <Body items={sortedItems} emptyMessage={emptyMessage} />
 
         </div>
-      </Provider>
+      </TableContext.Provider>
     );
   }
 }

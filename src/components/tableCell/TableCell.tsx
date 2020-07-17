@@ -4,7 +4,8 @@ import Kit from '../tableKit/TableKit';
 import { withTableContext } from '../context';
 
 
-const getEmptyCells = (item, { width }, prefix) => {
+
+function getEmptyCells(item, { width }, prefix) {
   const cells = [];
   for (let i = 0; i < 3; i + 1) {
     cells.push(
