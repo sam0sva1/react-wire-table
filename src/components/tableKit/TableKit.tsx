@@ -1,22 +1,27 @@
 import React from 'react';
 
 import Checkbox from '../tableCheckbox/TableCheckbox';
+import { TableContext } from '../../context';
+import { TItem, IGridItem } from '../../types';
 
 
-function SelectionCell(props) {
+export interface ISelectionCellProps {
+  item: TItem;
+  source: IGridItem;
+}
+
+export function SelectionCell(props: ISelectionCellProps) {
   const {
     item: { selected, id },
     source: {
       width,
       classList,
-      config: {
-        onClick = () => {},
-      },
-    },
-    context: {
-      classPrefix,
+      kitConfig,
     },
   } = props;
+
+  const { classPrefix } = React.useContext(TableContext);
+
   const defaultWidth = `${SelectionCell.width}px`;
 
   return (
@@ -24,7 +29,7 @@ function SelectionCell(props) {
       style={width ? { width, minWidth: width } : { width: defaultWidth, minWidth: defaultWidth }}
       className={`${classPrefix}table-row__cell ${classPrefix}table-cell ${classPrefix}table-cell_in-body ${classPrefix}table-cell_selection${classList ? ` ${classList}` : ''}`}
     >
-      <button type="button" onClick={onClick(id)}>
+      <button type="button" onClick={kitConfig?.onCheckboxClick?.(id, selected)}>
         <Checkbox checked={selected} />
       </button>
     </div>
@@ -32,11 +37,6 @@ function SelectionCell(props) {
 }
 SelectionCell.width = 40;
 
-
-export default {
+export const Kit = {
   selection: SelectionCell,
-};
-
-export {
-  SelectionCell,
 };

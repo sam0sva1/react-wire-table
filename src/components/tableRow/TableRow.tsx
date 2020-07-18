@@ -1,10 +1,15 @@
 import React from 'react';
 
 import { getCells, getEmptyCells } from '../tableCell/TableCell';
-import { withTableContext } from '../../context';
+import { TableContext } from '../../context';
+import { TItem } from '../../types';
 
+export interface ITableRow {
+  item: TItem;
+}
 
-const TableRow = ({ item, context }) => {
+export function TableRow({ item }: ITableRow) {
+  const context = React.useContext(TableContext);
   const { grid, classPrefix } = context;
 
   if (item.length) {
@@ -25,5 +30,3 @@ const TableRow = ({ item, context }) => {
     </div>
   );
 };
-
-export default withTableContext(TableRow);
