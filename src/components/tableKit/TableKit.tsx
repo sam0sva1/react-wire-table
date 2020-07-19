@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Checkbox from '../tableCheckbox/TableCheckbox';
+import { Checkbox } from '../tableCheckbox/TableCheckbox';
 import { TableContext } from '../../context';
 import { TItem, IGridItem } from '../../types';
 
