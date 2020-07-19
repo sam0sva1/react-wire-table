@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TableHeaderCell from '../tableHeaderCell/TableHeaderCell';
+import { TableHeaderCell } from '../tableHeaderCell/TableHeaderCell';
 import { TItems } from '../../types';
 import { TableContext } from '../../context';
 
