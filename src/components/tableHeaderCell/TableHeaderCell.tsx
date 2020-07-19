@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Icon } from '../tableIcon/TableIcon';
-import { TableKit } from '../tableKit/TableKit';
+import { Kit } from '../tableKit/TableKit';
 import { getClassLine, getDirectionPic } from './helpers';
 import { TableContext } from '../../context';
 import { IGridItem, TItems } from '../../types';
@@ -39,8 +39,8 @@ export function TableHeaderCell(props: ITableHeaderCellProps) {
     styles.width = width;
     styles.minWidth = width;
   } else if (!width && kit) {
-    styles.width = TableKit[kit].width;
-    styles.minWidth = TableKit[kit].width;
+    styles.width = Kit[kit].width;
+    styles.minWidth = Kit[kit].width;
   }
 
   return (
