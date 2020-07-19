@@ -1,5 +1,5 @@
 export interface IIconProps {
-  width?: number;
-  height?: number;
-  fill?: string;
+	width?: number;
+	height?: number;
+	fill?: string;
 }

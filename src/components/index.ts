@@ -7,7 +7,6 @@ export * from './tableBody';
 export * from './tableRow';
 export * from './tableCell';
 
-
 export * from './tableIcon';
 export * from './tableKit';
 export * from './tableCheckbox';

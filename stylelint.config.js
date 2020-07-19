@@ -5,7 +5,7 @@ module.exports = {
 		'declaration-empty-line-before': null,
 		'no-missing-end-of-source-newline': null,
 		indentation: [
-			'space',
+			2,
 			{
 				except: ['value'],
 			},

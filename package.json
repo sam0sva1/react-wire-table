@@ -20,7 +20,7 @@
 		"installPeer": "node build-tool/peerDep.js",
 		"test": "jest",
 		"test:dev": "jest --watch",
-		"lint": "eslint src/**/*.{js,tsx,ts,jsx} --fix",
+		"lint": "npx eslint 'src/**/*.{js,tsx,ts,jsx}' --fix",
 		"stylelint": "stylelint src/**/*.{ts,tsx,jsx,js,css,scss,less} --fix",
 		"commit": "git-cz",
 		"release": "standard-version",
@@ -56,7 +56,7 @@
 		}
 	},
 	"lint-staged": {
-		"{src,docs}/**/*.{js,json,css,jsx,ts,tsx} *.js": [
+		"{src,docs}/**/*.{js,json,css,jsx,ts,tsx}": [
 			"pretty-quick --staged",
 			"npm run stylelint",
 			"eslint --fix --quiet --ignore-path .gitignore",
@@ -103,7 +103,7 @@
 		"concurrently": "^5.0.0",
 		"cross-spawn": "^7.0.1",
 		"css-loader": "^3.2.1",
-		"eslint": "^6.8.0",
+		"eslint": "^7.5.0",
 		"eslint-config-airbnb": "^18.0.1",
 		"eslint-config-airbnb-base": "^14.0.0",
 		"eslint-config-prettier": "^6.7.0",
