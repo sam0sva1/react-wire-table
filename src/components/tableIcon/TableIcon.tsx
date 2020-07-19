@@ -1,35 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import ArrowDown from './icons/arrowDown';
 import ArrowUp from './icons/arrowUp';
 import UnfoldMore from './icons/unfoldMore';
 
+export interface IIconProps {
+  type: string;
+  className?: string;
+  onClick?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
+}
 
-class Icon extends Component {
-  getIcon(type) {
+export function Icon(props: IIconProps) {
+  function getIcon(type: string) {
     switch (type) {
       case 'arrow_down':
-        return <ArrowDown {...this.props} />;
+        return <ArrowDown {...props} />;
       case 'arrow_up':
-        return <ArrowUp {...this.props} />;
+        return <ArrowUp {...props} />;
       case 'unfold_more':
-        return <UnfoldMore {...this.props} />;
+        return <UnfoldMore {...props} />;
       default:
         return <div />;
     }
   }
 
-  render() {
-    const { onClick, className, type } = this.props;
-    const classes = ['icon'];
-    if (className) classes.push(className);
+  const { onClick, className, type } = props;
+  const classes = ['icon'];
 
-    return (
-      <div className={classes.join(' ')} onClick={onClick}>
-        {this.getIcon(type)}
-      </div>
-    );
-  }
+  if (className) classes.push(className);
+
+  return (
+    <div className={classes.join(' ')} onClick={onClick}>
+      {getIcon(type)}
+    </div>
+  );
+
 }
-
-export default Icon;

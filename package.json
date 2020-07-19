@@ -14,7 +14,7 @@
 	"sideEffects": false,
 	"author": {
 		"name": "sam0sva1",
-		"email": ""
+		"email": "konstantus@live.ru"
 	},
 	"scripts": {
 		"installPeer": "node build-tool/peerDep.js",
