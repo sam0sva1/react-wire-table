@@ -1,23 +1,23 @@
 import React from 'react';
 
-import { getCells, getEmptyCells } from '../tableCell/TableCell';
 import { TableContext } from '../../context';
 import { TItem } from '../../types';
+import { getEmptyCells, getCells } from '../tableCell';
 
-export interface ITableRow {
+export interface ITableRowProps {
   item: TItem;
 }
 
-export function TableRow({ item }: ITableRow) {
+export function TableRow({ item }: ITableRowProps) {
   const context = React.useContext(TableContext);
-  const { grid, classPrefix } = context;
+  const { classPrefix } = context;
 
-  if (item.length) {
+  if (item.isEmpty) {
     return (
       <div
         className={`${classPrefix}table-body__row ${classPrefix}table-row_empty`}
       >
-        {getEmptyCells(item, grid, classPrefix)}
+        {getEmptyCells(item, context)}
       </div>
     );
   }
@@ -26,7 +26,7 @@ export function TableRow({ item }: ITableRow) {
     <div
       className={`${classPrefix}table-body__row ${classPrefix}table-row${item.selected ? ` ${classPrefix}table-row_selected` : ''}`}
     >
-      {getCells(item, grid, context)}
+      {getCells(item, context)}
     </div>
   );
 };

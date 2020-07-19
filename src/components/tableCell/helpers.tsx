@@ -2,25 +2,23 @@ import React from 'react';
 
 import { Kit } from '../tableKit/TableKit';
 import { ITableContext } from '../../context';
-import { TItem, TGrid, IGridItem } from '../../types';
+import { TItem, IGridItem } from '../../types';
 import { CellWrapper } from './CellWrapper';
 import { TableCell } from './TableCell';
 
 
-export function getEmptyCells(item: TItem, { width }: IGridItem, { classPrefix }: ITableContext) {
-  const cells = [];
-  for (let i = 0; i < 3; i + 1) {
-    cells.push(
+export function getEmptyCells(item: TItem, { grid, classPrefix }: ITableContext) {
+  return grid.map(({ width }: IGridItem) => {
+    return (
       <div
         style={width ? { width, minWidth: width } : {}}
         className={`${classPrefix}row__cell ${classPrefix}cell ${classPrefix}cell_empty`}
-      />,
+      />
     );
-  }
-  return cells;
+  });
 };
 
-export function getCells(item: TItem, grid: TGrid, context: ITableContext) {
+export function getCells(item: TItem, { grid }: ITableContext) {
   return grid.map((source) => {
     const { kit, render, index } = source;
 

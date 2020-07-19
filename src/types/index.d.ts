@@ -7,6 +7,8 @@ export type TItem = Record<string, any>;
 export type TItems = TItem[];
 
 export interface IGridItem {
+  isEmpty?: boolean;
+
   index: string;
   label: string;
   width: number | string;

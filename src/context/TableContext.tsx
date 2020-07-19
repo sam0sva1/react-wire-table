@@ -22,7 +22,7 @@ const defaultValue: ITableContext = {
   sorting: {
     sortField: '',
     sortDirection: 'asc',
-    changeSort: (name) => undefined,
+    changeSort: () => undefined,
     isEmpty: true,
   },
   classPrefix: 'rwt-',

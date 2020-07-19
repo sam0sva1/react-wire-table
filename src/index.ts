@@ -1,5 +1,4 @@
-import Table from './components/table/Table';
+export { Table as WireTable } from './components/table/Table';
+export * from './types';
 
-
-export default Table;
-export { default as Checkbox } from './components/tableCheckbox/TableCheckbox';
+export { Checkbox } from './components/tableCheckbox/TableCheckbox';
