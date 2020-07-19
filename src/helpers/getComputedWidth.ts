@@ -1,8 +1,10 @@
 import { TGrid } from '../types';
 
 export function getComputedWidth(grid: TGrid) {
-  if (grid[grid.length - 1].width === 'auto') {
-    return null;
+  const autoWidth = grid.find((souce) => souce.width === 'auto');
+
+  if (autoWidth) {
+    return undefined;
   }
 
   return grid.reduce((accum: number, { width }) => {

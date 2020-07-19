@@ -1,6 +1,13 @@
-export { default as Body } from './tableBody/TableBody';
-export { default as Row } from './tableRow/TableRow';
-export { default as Header } from './tableHeader/TableHeader';
-export { default as HeaderCell } from './tableHeaderCell/TableHeaderCell';
+export * from './table';
 
-export { default as Kit } from './tableKit/TableKit';
+export * from './tableHeader';
+export * from './tableHeaderCell';
+
+export * from './tableBody';
+export * from './tableRow';
+export * from './tableCell';
+
+
+export * from './tableIcon';
+export * from './tableKit';
+export * from './tableCheckbox';

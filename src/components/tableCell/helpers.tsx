@@ -7,7 +7,7 @@ import { CellWrapper } from './CellWrapper';
 import { TableCell } from './TableCell';
 
 
-export function getEmptyCells(item: TItem, { grid, classPrefix }: ITableContext) {
+export function getEmptyCells({ grid, classPrefix }: ITableContext) {
   return grid.map(({ width }: IGridItem) => {
     return (
       <div

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Table from 'react-wire-table';
+import { WireTable } from 'react-wire-table';
 
 import { getGrid } from './grid';
 import { items } from './items';

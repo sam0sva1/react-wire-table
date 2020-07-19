@@ -17,7 +17,7 @@ export function TableRow({ item }: ITableRowProps) {
       <div
         className={`${classPrefix}table-body__row ${classPrefix}table-row_empty`}
       >
-        {getEmptyCells(item, context)}
+        {getEmptyCells(context)}
       </div>
     );
   }

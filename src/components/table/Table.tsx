@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import { TableContext } from '../../context';
-import Body from '../tableBody/TableBody';
-import Header from '../tableHeader/TableHeader';
+import { TableBody } from '../tableBody/TableBody';
+import { TableHeader } from '../tableHeader/TableHeader';
 import { TItems, TGrid } from '../../types';
 
 import { getComputedWidth, sorter, selectPath } from '../../helpers';
@@ -104,6 +104,7 @@ export class Table extends React.Component<ITableProps, ITableState> {
     const sortedItems = this.sortItems(items);
 
     const ifNoWidth = computedWidth ? { width: `${computedWidth}px` } : {};
+    const tableWidth = width ? { width } : ifNoWidth;
 
     const context = this.getContextValue();
 
@@ -111,17 +112,12 @@ export class Table extends React.Component<ITableProps, ITableState> {
       <TableContext.Provider value={context}>
         <div
           className={`${context.classPrefix}table${isEmpty ? ` ${context.classPrefix}table_empty` : ''}`}
-          style={
-            width
-              ? { width }
-              : ifNoWidth
-          }
+          style={tableWidth}
         >
 
-          { !noHeader && (
-            <Header {...this.state} grid={grid} items={sortedItems} />
-          )}
-          <Body items={sortedItems} emptyMessage={emptyMessage} />
+          {!noHeader && (<TableHeader {...this.state} items={sortedItems} />)}
+
+          <TableBody items={sortedItems} emptyMessage={emptyMessage} />
 
         </div>
       </TableContext.Provider>
