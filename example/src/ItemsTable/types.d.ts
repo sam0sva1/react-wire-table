@@ -9,5 +9,5 @@ export interface IItem {
 }
 
 export interface IGridParams {
-  onLinkClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void;
+  onLinkClick(event: React.MouseEvent): void;
 }

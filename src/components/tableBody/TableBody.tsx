@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { TableRow } from '../tableRow/TableRow';
-import { TItems, TItem } from '../../types';
+import { TItems, TItem, TAnyReactChild } from '../../types';
 import { TableContext } from '../../context';
 
 export interface ITableBodyProps {
   items: TItems;
-  emptyMessage?: string;
+  emptyMessage?: TAnyReactChild;
 }
 
 export function TableBody({ items, emptyMessage }: ITableBodyProps) {

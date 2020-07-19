@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { Icon } from '../tableIcon/TableIcon';
 import { Kit } from '../tableKit/TableKit';
 import { getClassLine, getDirectionPic } from './helpers';
 import { TableContext } from '../../context';
@@ -16,7 +15,7 @@ export function TableHeaderCell(props: ITableHeaderCellProps) {
   const context = React.useContext(TableContext);
   const {
     sorting: {
-      sortField, sortDirection, changeSort, isEmpty,
+      sortField, sortDirection, changeSort,
     },
     classPrefix,
   } = context;
@@ -58,13 +57,7 @@ export function TableHeaderCell(props: ITableHeaderCellProps) {
             <>
               {label || ' '}
 
-              {sort && (
-                <>
-                  {isEmpty && <Icon type="unfold_more" fill="#8d9aa7" />}
-                  {(sortField && sortDirection) && getDirectionPic(index, sortField, sortDirection)}
-                </>
-              )
-              }
+              {sort && getDirectionPic(index, sortField, sortDirection)}
             </>
           )
       }

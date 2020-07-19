@@ -3,23 +3,23 @@ import * as React from 'react';
 import { TableContext } from '../../context';
 import { TableBody } from '../tableBody/TableBody';
 import { TableHeader } from '../tableHeader/TableHeader';
-import { TItems, TGrid } from '../../types';
+import { TItems, TGrid, TAnyReactChild } from '../../types';
 
 import { getComputedWidth, sorter, selectPath } from '../../helpers';
 
 export interface ITableProps {
-  sortIndex: string;
+  sortIndex?: string;
   items: TItems;
   classPrefix?: string;
   grid: TGrid;
-  width?: number;
-  emptyMessage?: string;
+  width?: number | string;
+  emptyMessage?: TAnyReactChild;
   noHeader?: boolean;
   cssModule?: Record<string, string>;
 }
 
 export interface ITableState {
-  sortField: string;
+  sortField: string | undefined;
   sortDirection: 'asc' | 'desc';
 }
 
@@ -34,7 +34,7 @@ export class Table extends React.Component<ITableProps, ITableState> {
     };
   }
 
-  public changeSort(newSortField: string) {
+  public changeSort = (newSortField: string) => {
     const { sortIndex } = this.props;
     let { sortField, sortDirection } = this.state;
 
@@ -53,7 +53,7 @@ export class Table extends React.Component<ITableProps, ITableState> {
     this.setState({ sortField, sortDirection });
   }
 
-  public sortItems(draftItems: TItems) {
+  public sortItems = (draftItems: TItems) => {
     const items = [...draftItems];
     const { sortField, sortDirection } = this.state;
     const { grid } = this.props;
@@ -67,7 +67,7 @@ export class Table extends React.Component<ITableProps, ITableState> {
     return items;
   }
 
-  public getContextValue() {
+  public getContextValue = () => {
     const { sortField, sortDirection } = this.state;
     const { grid, items = [], classPrefix } = this.props;
 

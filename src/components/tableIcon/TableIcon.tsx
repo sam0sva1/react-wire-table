@@ -28,10 +28,8 @@ export interface IIconProps {
 }
 
 export function Icon(props: IIconProps) {
-
-
   const { onClick, className, type } = props;
-  const classes = ['icon'];
+  const classes = ['icon', type];
 
   if (className) classes.push(className);
 
@@ -40,5 +38,4 @@ export function Icon(props: IIconProps) {
       {getIcon(type, props)}
     </div>
   );
-
 }

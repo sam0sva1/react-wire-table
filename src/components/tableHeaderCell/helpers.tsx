@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Icon } from '../tableIcon';
 
-export function getDirectionPic(name: string, sortField: string, sortDirection: string) {
+export function getDirectionPic(name: string, sortField: string | undefined = undefined, sortDirection: string) {
   if (sortField === name && sortDirection === 'asc') {
     return <Icon type="arrow_up" fill="#ffffff" />;
   }
@@ -13,7 +13,7 @@ export function getDirectionPic(name: string, sortField: string, sortDirection: 
   return <Icon type="unfold_more" fill="#8d9aa7" />;
 };
 
-export function getClassLine(index: string, sort: boolean = false, sortField: string, sortDirection: string, prefix: string) {
+export function getClassLine(index: string, sort: boolean = false, sortField: string | undefined = undefined, sortDirection: string, prefix: string) {
   let classes = `${prefix}table-row__cell ${prefix}table-cell ${prefix}table-cell_in-header ${prefix}table-cell_${index}`;
 
   if (sort) {

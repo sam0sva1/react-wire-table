@@ -4,7 +4,7 @@ import { TGrid, TItem } from '../types';
 export interface ITableContext {
   grid: TGrid;
   sorting: {
-    sortField: string;
+    sortField: string | undefined;
     sortDirection: 'asc' | 'desc';
     changeSort(newSortField: string): void;
     isEmpty: boolean;

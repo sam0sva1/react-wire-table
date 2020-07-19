@@ -12,14 +12,14 @@ export interface IGridItem {
 
   index: string;
   label: string;
-  width: number | string;
-  path: string;
+  width?: number | string;
+  path?: string;
   sort?: boolean;
 
-  placeholder: string,
-  processFunc: (value: any) => any,
-  headerRender: (props: { source: IGridItem; context: ITableContext; items: TItems }) => React.ReactElement,
-  render: (item: TItem) => React.ReactElement,
+  placeholder?: string,
+  processFunc?: (value: any) => any,
+  headerRender?: (props: { source: IGridItem; context: ITableContext; items: TItems }) => React.ReactElement,
+  render?: (item: any) => React.ReactElement,
 
   classList?: string;
 

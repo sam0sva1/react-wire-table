@@ -9,11 +9,11 @@ export const getGrid = (params: IGridParams) => [
     width: '25%',
     sort: true,
     render: ({ id, info }: IItem) => (
-      <a
+      <button
         onClick={params.onLinkClick}
       >
         #{id} {info.name}
-      </a>
+      </button>
     ),
   },
   {
