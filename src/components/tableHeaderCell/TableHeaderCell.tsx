@@ -1,48 +1,39 @@
-import React, { Component, Fragment } from 'react';
+import * as React from 'react';
 
-import Icon from '../tableIcon/TableIcon';
-import TableKit from '../tableKit/TableKit';
-import { withTableContext } from '../context';
+import { Icon } from '../tableIcon/TableIcon';
+import { TableKit } from '../tableKit/TableKit';
+import { getClassLine, getDirectionPic } from './helpers';
+import { TableContext } from '../../context';
+import { IGridItem, TItems } from '../../types';
+import { CSSProperties } from 'react';
 
+export interface ITableHeaderCellProps {
+  source: IGridItem;
+  items: TItems;
+}
 
-const getDirectionPic = (name, sortField, sortOrder) => {
-  if (sortField === name && sortOrder === 'asc') {
-    return <Icon type="arrow_up" fill="#ffffff" />;
-  }
-
-  if (sortField === name && sortOrder === 'desc') {
-    return <Icon type="arrow_down" fill="#ffffff" />;
-  }
-
-  return <Icon type="unfold_more" fill="#8d9aa7" />;
-};
-
-const getClassLine = (index, sort, sortField, sortOrder, prefix) => {
-  let classes = `${prefix}table-row__cell ${prefix}table-cell ${prefix}table-cell_in-header ${prefix}table-cell_${index}`;
-
-  if (sort) {
-    classes = `${classes} ${prefix}cell_sortable`;
-  }
-
-  if (sortField && sortOrder && sortField === index) {
-    classes = `${classes} ${prefix}cell_sorted`;
-  }
-
-  return classes;
-};
-
-const TableHeaderCell = ({ headerRender: HeaderRender, ...props }) => {
-  const {
-    index, label, width, sort, kit, items, config, context,
-  } = props;
+export function TableHeaderCell(props: ITableHeaderCellProps) {
+  const context = React.useContext(TableContext);
   const {
     sorting: {
-      sortField, sortOrder, changeSort, empty,
+      sortField, sortDirection, changeSort, isEmpty,
     },
     classPrefix,
   } = context;
 
-  const styles = {};
+  const {
+    source: {
+      headerRender: HeaderRender,
+      index,
+      label,
+      width,
+      sort,
+      kit,
+    },
+    items,
+  } = props;
+
+  const styles: CSSProperties = {};
 
   if (width) {
     styles.width = width;
@@ -57,24 +48,26 @@ const TableHeaderCell = ({ headerRender: HeaderRender, ...props }) => {
       role="button"
       key={index}
       style={styles}
-      className={getClassLine(index, sort, sortField, sortOrder, classPrefix )}
+      className={getClassLine(index, sort, sortField, sortDirection, classPrefix)}
       onClick={(event) => { event.preventDefault(); if (sort) changeSort(index); }}
     >
       {
         HeaderRender
-          ? <HeaderRender {...props} items={items} />
+          ? <HeaderRender source={props.source} context={context} items={items} />
           : (
-            <Fragment>
-              { label || ' ' }
-              { (sort && empty)
-                ? <Icon type="unfold_more" fill="#8d9aa7" />
-                : (sort && sortField && sortOrder) && getDirectionPic(index, sortField, sortOrder)
+            <>
+              {label || ' '}
+
+              {sort && (
+                <>
+                  {isEmpty && <Icon type="unfold_more" fill="#8d9aa7" />}
+                  {(sortField && sortDirection) && getDirectionPic(index, sortField, sortDirection)}
+                </>
+              )
               }
-            </Fragment>
+            </>
           )
       }
     </a>
   );
 };
-
-export default withTableContext(TableHeaderCell);

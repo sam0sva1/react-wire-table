@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ITableContext } from '../context';
 
 type TReactChild = JSX.Element | React.ReactChild | null | undefined | boolean;
 export type TAnyReactChild = TReactChild | TReactChild[] | TReactChild[][];
@@ -13,10 +14,12 @@ export interface IGridItem {
   label: string;
   width: number | string;
   path: string;
-  processFunc: (value: any) => any,
+  sort?: boolean;
+
   placeholder: string,
-  headerRender: (item: TItem) => TAnyReactChild,
-  render: (item: TItem) => TAnyReactChild,
+  processFunc: (value: any) => any,
+  headerRender: (props: { source: IGridItem; context: ITableContext; items: TItems }) => React.ReactElement,
+  render: (item: TItem) => React.ReactElement,
 
   classList?: string;
 
