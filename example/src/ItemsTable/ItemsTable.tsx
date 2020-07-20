@@ -21,6 +21,10 @@ export function ItemsTable() {
         items={items}
         grid={getGrid(params)}
         width="100%"
+        cssModule={{
+          'rwt-table': 'rwt-table rwt-table_ololo',
+          'rwt-table-cell': 'rwt-table-cell rwt-table-cell_OLOLO'
+        }}
         emptyMessage={(
           <div style={{ fontSize: '0.7em', lineHeight: '1.3em', }}>There are no items yet.</div>
         )}

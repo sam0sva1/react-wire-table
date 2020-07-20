@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { classes } from 'classifizer';
+import { classesStylizer } from 'classifizer';
 
 import { TableContext } from '../../context';
 import { TableBody } from '../tableBody/TableBody';
@@ -74,7 +74,7 @@ export class Table extends React.Component<ITableProps, ITableState> {
 
 	public getContextValue = () => {
 		const { sortField, sortDirection } = this.state;
-		const { grid, items = [], classPrefix } = this.props;
+		const { grid, items = [], classPrefix, cssModule = {} } = this.props;
 
 		const ifNotEmptyPrefix =
 			typeof classPrefix === 'string' ? `${classPrefix}-` : '';
@@ -90,6 +90,7 @@ export class Table extends React.Component<ITableProps, ITableState> {
 			classPrefix:
 				typeof classPrefix === 'undefined' ? 'rwt-' : ifNotEmptyPrefix,
 			selectPath,
+			stylize: classesStylizer(cssModule),
 		};
 	};
 
@@ -112,7 +113,7 @@ export class Table extends React.Component<ITableProps, ITableState> {
 		return (
 			<TableContext.Provider value={context}>
 				<div
-					className={classes(
+					className={context.stylize(
 						`${context.classPrefix}table`,
 						isEmpty && ` ${context.classPrefix}table_empty`
 					)}

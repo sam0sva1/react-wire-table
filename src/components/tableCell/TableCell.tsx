@@ -1,5 +1,4 @@
 import React from 'react';
-import { classes } from 'classifizer';
 
 import { TableContext } from '../../context';
 import { TItem, IGridItem } from '../../types';
@@ -14,7 +13,9 @@ export function TableCell(props: ITableCellProps) {
 		item,
 		source: { index, path, placeholder, processFunc, width, classList },
 	} = props;
-	const { sorting, classPrefix, selectPath } = React.useContext(TableContext);
+	const { sorting, classPrefix, selectPath, stylize } = React.useContext(
+		TableContext
+	);
 
 	let value = path ? selectPath(item, path) : item[index];
 
@@ -29,7 +30,7 @@ export function TableCell(props: ITableCellProps) {
 	return (
 		<div
 			style={width ? { width, minWidth: width } : {}}
-			className={classes(
+			className={stylize(
 				`${classPrefix}table-row__cell`,
 				`${classPrefix}table-cell`,
 				`${classPrefix}table-cell_in-body`,

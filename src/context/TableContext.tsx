@@ -11,6 +11,7 @@ export interface ITableContext {
 	};
 	classPrefix: string;
 	selectPath(kit: TItem, path: string): string | number | undefined | null;
+	stylize(...args: any): string;
 }
 
 export interface ITableContextProps {
@@ -27,6 +28,7 @@ const defaultValue: ITableContext = {
 	},
 	classPrefix: 'rwt-',
 	selectPath: (kit, path) => kit[path],
+	stylize: (args) => args,
 };
 
 export const TableContext = React.createContext<ITableContext>(defaultValue);
