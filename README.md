@@ -14,7 +14,7 @@ npm install --save react-wire-table
 
 ``` javascript
 {
-    // inner column naming and a key to a property if an item is flat
+    // an inner column name and a key to a property if an item is flat
     index: 'name',
 
     // Label for a column
@@ -23,7 +23,7 @@ npm install --save react-wire-table
     // px
     width: 100,
 
-    // item['path']['to']['property'] if item is not flat
+    // inside of the table will perform (item['path']['to']['property']) if an item is not flat
     path: 'path.to.property',
 
     // to process data before display
@@ -37,6 +37,37 @@ npm install --save react-wire-table
 
     // for complex view of a cell
     reader: () => < div > Some data < /div>,
+}
+```
+
+## Table properties
+
+``` javascript
+{
+  // an array of each column specifications
+  grid: []
+
+  // an array of items to display
+  items: []
+
+  // import * as styles from './styles.css'; in a table initialization file
+  // cssModules={styles}
+  cssModules?: {}
+
+  // If you don't want to provide any header
+  noHeader?: true
+
+  // a name of an item field to provide default sorting
+  sortIndex?: 'name'
+
+  // to say something if you have an empty array of items
+  emptyMessage?: () => <div>NO ITEMS FOR YOU BOY</div>
+
+  // width of the whole table, a table will stretch if not specified
+  width: 1200 | '1200px'
+
+  // a prefix to add to all classes
+  classPrefix: 'project-'
 }
 ```
 
@@ -115,14 +146,14 @@ export default class App extends Component {
 
 ``` css
 .rwt-table {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .rwt-table__header {}
 
 .rwt-table-header {
-    background-color: rgba(0, 185, 255, 0.1);
+  background-color: rgba(0, 185, 255, 0.1);
 }
 
 .rwt-table__body {}
@@ -134,20 +165,24 @@ export default class App extends Component {
 .rwt-table-body__row {}
 
 .rwt-table-row {
-    display: flex;
+  display: flex;
 }
 
 .rwt-table-row__cell {}
 
 .rwt-table-cell {
-    display: flex;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
 }
 
 .rwt-table-cell_in-header {}
+
+button.rwt-table-cell_in-header {}
+
+.rwt-table-cell_in-header .icon {}
 
 .rwt-table-cell_in-body {}
 ```
