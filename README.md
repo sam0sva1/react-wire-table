@@ -45,29 +45,30 @@ npm install --save react-wire-table
 ``` javascript
 {
   // an array of each column specifications
-  grid: []
+  grid: [],
 
   // an array of items to display
-  items: []
+  items: [],
 
   // import * as styles from './styles.css'; in a table initialization file
   // cssModules={styles}
-  cssModules?: {}
+  cssModules?: {},
 
   // If you don't want to provide any header
-  noHeader?: true
+  noHeader?: true,
 
   // a name of an item field to provide default sorting
-  sortIndex?: 'name'
+  sortIndex?: 'name',
 
   // to say something if you have an empty array of items
-  emptyMessage?: () => <div>NO ITEMS FOR YOU BOY</div>
+  emptyMessage?: () => <div>NO ITEMS FOR YOU BOY</div>,
 
   // width of the whole table, a table will stretch if not specified
-  width: 1200 | '1200px'
+  // width: '1200px',
+  width: 1200,
 
   // a prefix to add to all classes
-  classPrefix: 'project-'
+  classPrefix: 'project-',
 }
 ```
 
