@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { classes } from 'classifizer';
 
 import { CSSProperties } from 'react';
 import { Kit } from '../tableKit/TableKit';
-import { getClassLine, getDirectionPic } from './helpers';
+import { getDirectionPic } from './helpers';
 import { TableContext } from '../../context';
 import { IGridItem, TItems } from '../../types';
 
@@ -33,32 +34,33 @@ export function TableHeaderCell(props: ITableHeaderCellProps) {
 		styles.minWidth = Kit[kit].width;
 	}
 
-	return (
-		<button
-			type="button"
-			tabIndex={0}
-			key={index}
-			style={styles}
-			className={getClassLine(
-				index,
-				sort,
-				sortField,
-				sortDirection,
-				classPrefix
-			)}
-			onClick={(event) => {
+	return React.createElement(
+		sort ? 'button' : 'div',
+		{
+			type: 'button',
+			tabIndex: sort ? 0 : -1,
+			key: index,
+			style: styles,
+			className: classes(
+				`${classPrefix}table-row__cell`,
+				`${classPrefix}table-cell`,
+				`${classPrefix}table-cell_in-header`,
+				`${classPrefix}table-cell_${index}`,
+				sort && `${classPrefix}table-cell_sortable`,
+				sortField === index && `${classPrefix}cell_sorted`
+			),
+			onClick: (event) => {
 				event.preventDefault();
 				if (sort) changeSort(index);
-			}}
-		>
-			{HeaderRender ? (
-				<HeaderRender source={props.source} context={context} items={items} />
-			) : (
-				<>
-					{label || ' '}
-					{sort && getDirectionPic(index, sortField, sortDirection)}
-				</>
-			)}
-		</button>
+			},
+		},
+		HeaderRender ? (
+			<HeaderRender source={props.source} context={context} items={items} />
+		) : (
+			<>
+				{label || ' '}
+				{sort && getDirectionPic(index, sortField, sortDirection)}
+			</>
+		)
 	);
 }

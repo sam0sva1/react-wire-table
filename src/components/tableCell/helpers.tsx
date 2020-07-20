@@ -1,4 +1,5 @@
 import React from 'react';
+import { classes } from 'classifizer';
 
 import { Kit } from '../tableKit/TableKit';
 import { ITableContext } from '../../context';
@@ -10,7 +11,11 @@ export function getEmptyCells({ grid, classPrefix }: ITableContext) {
 	return grid.map(({ width }: IGridItem) => (
 		<div
 			style={width ? { width, minWidth: width } : {}}
-			className={`${classPrefix}row__cell ${classPrefix}cell ${classPrefix}cell_empty`}
+			className={classes(
+				`${classPrefix}row__cell`,
+				`${classPrefix}cell`,
+				`${classPrefix}cell_empty`
+			)}
 		/>
 	));
 }

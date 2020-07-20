@@ -1,4 +1,5 @@
 import React from 'react';
+import { classes } from 'classifizer';
 
 import { ArrowDown } from './icons/arrowDown';
 import { ArrowUp } from './icons/arrowUp';
@@ -32,15 +33,12 @@ export interface IIconProps {
 
 export function Icon(props: IIconProps) {
 	const { onClick, className, type } = props;
-	const classes = ['icon', type];
-
-	if (className) classes.push(className);
 
 	return (
 		<div
-			tabIndex={0}
+			tabIndex={-1}
 			role="button"
-			className={classes.join(' ')}
+			className={classes('icon', type, className)}
 			onClick={onClick}
 		>
 			{getIcon(type, props)}

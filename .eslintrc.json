@@ -82,7 +82,8 @@
 			"react/jsx-indent": "off",
 			"react/jsx-indent-props": "off",
 			"@typescript-eslint/interface-name-prefix": "off",
-			"jsx-a11y/click-events-have-key-events": "off"
+			"jsx-a11y/click-events-have-key-events": "off",
+			"react/prop-types": "off"
 	},
 	"overrides": [
 			{

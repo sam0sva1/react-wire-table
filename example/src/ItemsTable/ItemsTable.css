@@ -42,6 +42,14 @@
 }
 
 .rwt-table-cell_in-header {
+  font-size: 16px;
+}
+
+button.rwt-table-cell_in-header {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
 }
 
 .rwt-table-cell_in-header .icon {

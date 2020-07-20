@@ -1,4 +1,5 @@
 import React from 'react';
+import { classes } from 'classifizer';
 
 import { Checkbox } from '../tableCheckbox/TableCheckbox';
 import { TableContext } from '../../context';
@@ -26,9 +27,13 @@ export function SelectionCell(props: ISelectionCellProps) {
 					? { width, minWidth: width }
 					: { width: defaultWidth, minWidth: defaultWidth }
 			}
-			className={`${classPrefix}table-row__cell ${classPrefix}table-cell ${classPrefix}table-cell_in-body ${classPrefix}table-cell_selection${
-				classList ? ` ${classList}` : ''
-			}`}
+			className={classes(
+				`${classPrefix}table-row__cell`,
+				`${classPrefix}table-cell`,
+				`${classPrefix}table-cell_in-body`,
+				`${classPrefix}table-cell_selection`,
+				classList
+			)}
 		>
 			<button
 				type="button"

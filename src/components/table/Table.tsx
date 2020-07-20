@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { classes } from 'classifizer';
 
 import { TableContext } from '../../context';
 import { TableBody } from '../tableBody/TableBody';
@@ -99,7 +100,7 @@ export class Table extends React.Component<ITableProps, ITableState> {
 			return <div>Provide a grid for your Table</div>;
 		}
 
-		const isEmpty = !items.length;
+		const isEmpty = items.length === 0;
 		const computedWidth = getComputedWidth(grid);
 		const sortedItems = this.sortItems(items);
 
@@ -111,9 +112,10 @@ export class Table extends React.Component<ITableProps, ITableState> {
 		return (
 			<TableContext.Provider value={context}>
 				<div
-					className={`${context.classPrefix}table${
-						isEmpty ? ` ${context.classPrefix}table_empty` : ''
-					}`}
+					className={classes(
+						`${context.classPrefix}table`,
+						isEmpty && ` ${context.classPrefix}table_empty`
+					)}
 					style={tableWidth}
 				>
 					{!noHeader && <TableHeader {...this.state} items={sortedItems} />}

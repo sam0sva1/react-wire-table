@@ -1,4 +1,5 @@
 import React from 'react';
+import { classes } from 'classifizer';
 
 import { TableContext } from '../../context';
 import { TItem } from '../../types';
@@ -15,7 +16,10 @@ export function TableRow({ item }: ITableRowProps) {
 	if (item.isEmpty) {
 		return (
 			<div
-				className={`${classPrefix}table-body__row ${classPrefix}table-row_empty`}
+				className={classes(
+					`${classPrefix}table-body__row`,
+					`${classPrefix}table-row_empty`
+				)}
 			>
 				{getEmptyCells(context)}
 			</div>
@@ -24,9 +28,11 @@ export function TableRow({ item }: ITableRowProps) {
 
 	return (
 		<div
-			className={`${classPrefix}table-body__row ${classPrefix}table-row${
-				item.selected ? ` ${classPrefix}table-row_selected` : ''
-			}`}
+			className={classes(
+				`${classPrefix}table-body__row`,
+				`${classPrefix}table-row`,
+				item.selected && `${classPrefix}table-row_selected`
+			)}
 		>
 			{getCells(item, context)}
 		</div>

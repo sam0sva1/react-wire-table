@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { Icon } from '../tableIcon';
 
 export function getDirectionPic(
@@ -15,24 +16,4 @@ export function getDirectionPic(
 	}
 
 	return <Icon type="unfold_more" fill="#8d9aa7" />;
-}
-
-export function getClassLine(
-	index: string,
-	sort = false,
-	sortField: string | undefined = undefined,
-	sortDirection: string,
-	prefix: string
-) {
-	let classes = `${prefix}table-row__cell ${prefix}table-cell ${prefix}table-cell_in-header ${prefix}table-cell_${index}`;
-
-	if (sort) {
-		classes = `${classes} ${prefix}cell_sortable`;
-	}
-
-	if (sortField && sortDirection && sortField === index) {
-		classes = `${classes} ${prefix}cell_sorted`;
-	}
-
-	return classes;
 }

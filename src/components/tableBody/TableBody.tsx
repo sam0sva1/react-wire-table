@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { classes } from 'classifizer';
 import { TableRow } from '../tableRow/TableRow';
 import { TItems, TItem, TAnyReactChild } from '../../types';
 import { TableContext } from '../../context';
@@ -22,7 +23,12 @@ export function TableBody({ items, emptyMessage }: ITableBodyProps) {
 	}
 
 	return (
-		<div className={`${classPrefix}table__body ${classPrefix}table-body`}>
+		<div
+			className={classes(
+				`${classPrefix}table__body`,
+				`${classPrefix}table-body`
+			)}
+		>
 			{items.map((item: TItem) => (
 				<TableRow key={item.id} item={item} />
 			))}

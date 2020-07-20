@@ -1,4 +1,5 @@
 import React from 'react';
+import { classes } from 'classifizer';
 
 export interface ICheckboxProps {
 	checked: boolean;
@@ -7,9 +8,9 @@ export interface ICheckboxProps {
 export function Checkbox({ checked }: ICheckboxProps) {
 	return (
 		<div
-			className={`checkbox-figure checkbox-figure__${
-				checked ? 'checked' : 'unchecked'
-			}`}
+			className={classes({
+				'checkbox-figure': { mod: { checked, unchecked: !checked } },
+			})}
 		/>
 	);
 }

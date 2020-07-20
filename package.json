@@ -63,7 +63,9 @@
 			"git add"
 		]
 	},
-	"dependencies": {},
+	"dependencies": {
+		"classifizer": "^1.0.7"
+	},
 	"devDependencies": {
 		"@babel/cli": "^7.7.0",
 		"@babel/core": "^7.7.2",
