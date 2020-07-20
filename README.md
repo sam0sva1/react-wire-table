@@ -50,6 +50,13 @@ npm install --save react-wire-table
   // an array of items to display
   items: [],
 
+  // width of the whole table, a table will stretch if not specified
+  // width: '1200px',
+  width?: 1200,
+
+  // a prefix to add to all classes, 'rwt-' by default
+  classPrefix?: 'project-',
+
   // import * as styles from './styles.css'; in a table initialization file
   // cssModules={styles}
   cssModules?: {},
@@ -62,13 +69,6 @@ npm install --save react-wire-table
 
   // to say something if you have an empty array of items
   emptyMessage?: () => <div>NO ITEMS FOR YOU BOY</div>,
-
-  // width of the whole table, a table will stretch if not specified
-  // width: '1200px',
-  width: 1200,
-
-  // a prefix to add to all classes
-  classPrefix: 'project-',
 }
 ```
 
