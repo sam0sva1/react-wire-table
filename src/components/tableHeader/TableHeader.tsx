@@ -1,5 +1,4 @@
 import React from 'react';
-import { classes } from 'classifizer';
 
 import { TableHeaderCell } from '../tableHeaderCell/TableHeaderCell';
 import { TItems } from '../../types';
@@ -10,17 +9,17 @@ export interface ITableHeaderProps {
 }
 
 export function TableHeader({ items }: ITableHeaderProps) {
-	const { grid, classPrefix } = React.useContext(TableContext);
+	const { grid, classPrefix, stylize } = React.useContext(TableContext);
 
 	return (
 		<div
-			className={classes(
+			className={stylize(
 				`${classPrefix}table__header`,
 				`${classPrefix}table-header`
 			)}
 		>
 			<div
-				className={classes(
+				className={stylize(
 					`${classPrefix}table-header__row`,
 					`${classPrefix}table-row`
 				)}

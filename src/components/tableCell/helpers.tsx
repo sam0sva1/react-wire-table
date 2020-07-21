@@ -1,5 +1,4 @@
 import React from 'react';
-import { classes } from 'classifizer';
 
 import { Kit } from '../tableKit/TableKit';
 import { ITableContext } from '../../context';
@@ -7,11 +6,11 @@ import { TItem, IGridItem } from '../../types';
 import { CellWrapper } from './CellWrapper';
 import { TableCell } from './TableCell';
 
-export function getEmptyCells({ grid, classPrefix }: ITableContext) {
+export function getEmptyCells({ grid, classPrefix, stylize }: ITableContext) {
 	return grid.map(({ width }: IGridItem) => (
 		<div
 			style={width ? { width, minWidth: width } : {}}
-			className={classes(
+			className={stylize(
 				`${classPrefix}row__cell`,
 				`${classPrefix}cell`,
 				`${classPrefix}cell_empty`

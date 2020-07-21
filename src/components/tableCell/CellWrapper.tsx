@@ -1,5 +1,4 @@
 import React from 'react';
-import { classes } from 'classifizer';
 
 import { TableContext } from '../../context';
 import { TAnyReactChild, IGridItem } from '../../types';
@@ -10,7 +9,7 @@ export interface ICellWrapperProps {
 }
 
 export function CellWrapper(props: ICellWrapperProps) {
-	const { sorting, classPrefix } = React.useContext(TableContext);
+	const { sorting, classPrefix, stylize } = React.useContext(TableContext);
 	const {
 		children,
 		source: { index, width, classList },
@@ -19,7 +18,7 @@ export function CellWrapper(props: ICellWrapperProps) {
 	return (
 		<div
 			style={width ? { width, minWidth: width } : {}}
-			className={classes(
+			className={stylize(
 				`${classPrefix}table-row__cell`,
 				`${classPrefix}table-cell`,
 				sorting.sortField === index && `${classPrefix}table-cell_sorted`,

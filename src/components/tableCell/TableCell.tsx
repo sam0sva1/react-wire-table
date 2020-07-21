@@ -1,4 +1,5 @@
 import React from 'react';
+import { classes } from 'classifizer';
 
 import { TableContext } from '../../context';
 import { TItem, IGridItem } from '../../types';
@@ -30,12 +31,14 @@ export function TableCell(props: ITableCellProps) {
 	return (
 		<div
 			style={width ? { width, minWidth: width } : {}}
-			className={stylize(
-				`${classPrefix}table-row__cell`,
-				`${classPrefix}table-cell`,
-				`${classPrefix}table-cell_in-body`,
-				`${classPrefix}table-cell_${index}`,
-				sorting.sortField === index && `${classPrefix}table-cell_sorted`,
+			className={classes(
+				stylize(
+					`${classPrefix}table-row__cell`,
+					`${classPrefix}table-cell`,
+					`${classPrefix}table-cell_in-body`,
+					`${classPrefix}table-cell_${index}`,
+					sorting.sortField === index && `${classPrefix}table-cell_sorted`
+				),
 				classList
 			)}
 		>

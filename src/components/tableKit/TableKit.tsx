@@ -16,7 +16,7 @@ export function SelectionCell(props: ISelectionCellProps) {
 		source: { width, classList, kitConfig },
 	} = props;
 
-	const { classPrefix } = React.useContext(TableContext);
+	const { classPrefix, stylize } = React.useContext(TableContext);
 
 	const defaultWidth = `${SelectionCell.width}px`;
 
@@ -28,10 +28,12 @@ export function SelectionCell(props: ISelectionCellProps) {
 					: { width: defaultWidth, minWidth: defaultWidth }
 			}
 			className={classes(
-				`${classPrefix}table-row__cell`,
-				`${classPrefix}table-cell`,
-				`${classPrefix}table-cell_in-body`,
-				`${classPrefix}table-cell_selection`,
+				stylize(
+					`${classPrefix}table-row__cell`,
+					`${classPrefix}table-cell`,
+					`${classPrefix}table-cell_in-body`,
+					`${classPrefix}table-cell_selection`
+				),
 				classList
 			)}
 		>

@@ -1,9 +1,9 @@
 import React from 'react';
-import { classes } from 'classifizer';
 
 import { ArrowDown } from './icons/arrowDown';
 import { ArrowUp } from './icons/arrowUp';
 import { UnfoldMore } from './icons/unfoldMore';
+import { TableContext } from '../../context';
 
 function getIcon(
 	type: string,
@@ -32,13 +32,14 @@ export interface IIconProps {
 }
 
 export function Icon(props: IIconProps) {
-	const { onClick, className, type } = props;
+	const { onClick, type } = props;
+	const { stylize } = React.useContext(TableContext);
 
 	return (
 		<div
 			tabIndex={-1}
 			role="button"
-			className={classes('icon', type, className)}
+			className={stylize({ 'sort-icon': { mod: { [type]: true } } })}
 			onClick={onClick}
 		>
 			{getIcon(type, props)}

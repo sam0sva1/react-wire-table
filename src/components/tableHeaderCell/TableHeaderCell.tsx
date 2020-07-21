@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { classes } from 'classifizer';
 
 import { CSSProperties } from 'react';
 import { Kit } from '../tableKit/TableKit';
@@ -17,6 +16,7 @@ export function TableHeaderCell(props: ITableHeaderCellProps) {
 	const {
 		sorting: { sortField, sortDirection, changeSort },
 		classPrefix,
+		stylize,
 	} = context;
 
 	const {
@@ -41,7 +41,7 @@ export function TableHeaderCell(props: ITableHeaderCellProps) {
 			tabIndex: sort ? 0 : -1,
 			key: index,
 			style: styles,
-			className: classes(
+			className: stylize(
 				`${classPrefix}table-row__cell`,
 				`${classPrefix}table-cell`,
 				`${classPrefix}table-cell_in-header`,
