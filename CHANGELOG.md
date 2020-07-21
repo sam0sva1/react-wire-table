@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/sam0sva1/react-wire-table/compare/v0.1.1...v0.1.3) (2020-07-21)
+
 ### [0.1.1](https://github.com/sam0sva1/react-wire-table/compare/v0.1.0...v0.1.1) (2020-07-20)
 
 ## [0.1.0](https://github.com/sam0sva1/react-wire-table/compare/v0.0.4...v0.1.0) (2020-07-20)
