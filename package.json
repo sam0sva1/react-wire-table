@@ -146,7 +146,7 @@
 		"ts-jest": "^24.2.0",
 		"typescript": "^3.7.2",
 		"which": "^2.0.2",
-		"yargs-parser": "^16.1.0"
+		"yargs-parser": "^18.1.2"
 	},
 	"keywords": [
 		"react",
