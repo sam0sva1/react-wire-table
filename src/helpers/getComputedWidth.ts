@@ -1,23 +1,24 @@
 import { TGrid } from '../types';
 
 export function getComputedWidth(grid: TGrid) {
-	const autoWidth = grid.find((souce) => souce.width === 'auto');
+	const hasAutoWidth = grid.some((source) => source.width === 'auto');
 
-	if (autoWidth) {
+	if (hasAutoWidth) {
 		return undefined;
 	}
 
 	return grid.reduce((accum: number, { width }) => {
-		const widthType = typeof width;
-
-		if (widthType === 'undefined') {
+		if (width === undefined) {
 			return accum;
 		}
 
-		if (widthType === 'string') {
-			return accum + Number((width as string).replace(/\D+/g, ''));
+		if (typeof width === 'string') {
+			if (width.includes('%')) {
+				return accum;
+			}
+			return accum + Number(width.replace(/\D+/g, ''));
 		}
 
-		return accum + (width as number);
+		return accum + width;
 	}, 0);
 }

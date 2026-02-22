@@ -1,6 +1,5 @@
-import * as React from 'react';
+import React, { CSSProperties } from 'react';
 
-import { CSSProperties } from 'react';
 import { Kit } from '../tableKit/TableKit';
 import { getDirectionPic } from './helpers';
 import { TableContext } from '../../context';
@@ -29,31 +28,36 @@ export function TableHeaderCell(props: ITableHeaderCellProps) {
 	if (width) {
 		styles.width = width;
 		styles.minWidth = width;
-	} else if (!width && kit) {
-		styles.width = Kit[kit].width;
-		styles.minWidth = Kit[kit].width;
+	} else if (kit && kit in Kit) {
+		styles.width = Kit[kit as keyof typeof Kit].width;
+		styles.minWidth = Kit[kit as keyof typeof Kit].width;
+	}
+
+	const elementProps: Record<string, unknown> = {
+		tabIndex: sort ? 0 : -1,
+		key: index,
+		style: styles,
+		className: stylize(
+			`${classPrefix}table-row__cell`,
+			`${classPrefix}table-cell`,
+			`${classPrefix}table-cell_in-header`,
+			`${classPrefix}table-cell_${index}`,
+			sort && `${classPrefix}table-cell_sortable`,
+			sortField === index && `${classPrefix}cell_sorted`
+		),
+		onClick: (event: React.MouseEvent) => {
+			event.preventDefault();
+			if (sort) changeSort(index);
+		},
+	};
+
+	if (sort) {
+		elementProps.type = 'button';
 	}
 
 	return React.createElement(
 		sort ? 'button' : 'div',
-		{
-			type: 'button',
-			tabIndex: sort ? 0 : -1,
-			key: index,
-			style: styles,
-			className: stylize(
-				`${classPrefix}table-row__cell`,
-				`${classPrefix}table-cell`,
-				`${classPrefix}table-cell_in-header`,
-				`${classPrefix}table-cell_${index}`,
-				sort && `${classPrefix}table-cell_sortable`,
-				sortField === index && `${classPrefix}cell_sorted`
-			),
-			onClick: (event) => {
-				event.preventDefault();
-				if (sort) changeSort(index);
-			},
-		},
+		elementProps,
 		HeaderRender ? (
 			<HeaderRender source={props.source} context={context} items={items} />
 		) : (

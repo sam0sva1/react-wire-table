@@ -30,7 +30,7 @@ export function TableRow({ item }: ITableRowProps) {
 			className={stylize(
 				`${classPrefix}table-body__row`,
 				`${classPrefix}table-row`,
-				item.selected && `${classPrefix}table-row_selected`
+				Boolean(item.selected) && `${classPrefix}table-row_selected`
 			)}
 		>
 			{getCells(item, context)}

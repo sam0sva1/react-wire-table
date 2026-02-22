@@ -18,7 +18,7 @@ export function TableCell(props: ITableCellProps) {
 		TableContext
 	);
 
-	let value = path ? selectPath(item, path) : item[index];
+	let value: unknown = path ? selectPath(item, path) : item[index];
 
 	if (typeof processFunc === 'function') {
 		value = processFunc(value);
@@ -42,7 +42,7 @@ export function TableCell(props: ITableCellProps) {
 				classList
 			)}
 		>
-			{value || ''}
+			{(value as React.ReactNode) || ''}
 		</div>
 	);
 }

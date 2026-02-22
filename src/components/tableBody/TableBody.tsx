@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { TableRow } from '../tableRow/TableRow';
 import { TItems, TItem, TAnyReactChild } from '../../types';
 import { TableContext } from '../../context';
@@ -15,7 +15,7 @@ export function TableBody({ items, emptyMessage }: ITableBodyProps) {
 		return (
 			<div className={stylize(`${classPrefix}table__body`)}>
 				<div className={stylize(`${classPrefix}table__empty-message`)}>
-					{emptyMessage || 'Нет объектов для отображения'}
+					{emptyMessage || 'No items to display'}
 				</div>
 			</div>
 		);
@@ -29,7 +29,7 @@ export function TableBody({ items, emptyMessage }: ITableBodyProps) {
 			)}
 		>
 			{items.map((item: TItem) => (
-				<TableRow key={item.id} item={item} />
+				<TableRow key={item.id as string} item={item} />
 			))}
 		</div>
 	);

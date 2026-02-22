@@ -3,16 +3,16 @@ import { TItem, TItems } from '../types';
 
 export function prepare(draft: TItem, field: string): string | number {
 	const value = selectPath(draft, field);
-	const item = value || JSON.stringify(draft);
-	return typeof item !== 'undefined' && typeof item === 'string'
-		? (item as string).toLowerCase().replace(' ', '')
+	const item = value ?? '';
+	return typeof item === 'string'
+		? item.toLowerCase().replace(/\s/g, '')
 		: item;
 }
 
 export function mainSorting(
 	a: string | number,
 	b: string | number,
-	direction: string
+	direction: 'asc' | 'desc'
 ) {
 	if (direction === 'asc') {
 		if (a < b) return -1;
@@ -25,7 +25,7 @@ export function mainSorting(
 	return 0;
 }
 
-export function sorter(items: TItems, field: string, direction: string) {
+export function sorter(items: TItems, field: string, direction: 'asc' | 'desc') {
 	return items.sort(function innerSorter(a: TItem, b: TItem) {
 		const first = prepare(a, field);
 		const second = prepare(b, field);
