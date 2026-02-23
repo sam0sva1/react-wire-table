@@ -27,7 +27,7 @@
 		"email": "konstantus@live.ru"
 	},
 	"scripts": {
-		"build": "rollup -c rollup.config.mjs",
+		"build": "rollup -c rollup.config.mjs && tsc -p tsconfig.build.json",
 		"typecheck": "tsc --noEmit",
 		"lint": "eslint src/",
 		"test": "vitest run",

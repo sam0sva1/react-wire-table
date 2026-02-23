@@ -4,8 +4,7 @@
 		"declaration": true,
 		"declarationMap": true,
 		"declarationDir": "dist/types",
-		"outDir": "dist",
-		"emitDeclarationOnly": false
+		"emitDeclarationOnly": true
 	},
 	"exclude": [
 		"node_modules",
