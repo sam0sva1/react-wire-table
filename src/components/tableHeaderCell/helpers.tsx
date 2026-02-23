@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Icon } from '../tableIcon';
 
 export function getDirectionPic(
 	name: string,
 	sortField: string | undefined = undefined,
-	sortDirection: string
+	sortDirection: 'asc' | 'desc'
 ) {
 	if (sortField === name && sortDirection === 'asc') {
 		return <Icon type="arrow_up" fill="#ffffff" />;

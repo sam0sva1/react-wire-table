@@ -12,9 +12,12 @@ export interface ISelectionCellProps {
 
 export function SelectionCell(props: ISelectionCellProps) {
 	const {
-		item: { selected, id },
+		item,
 		source: { width, classList, kitConfig },
 	} = props;
+
+	const selected = item.selected as boolean;
+	const id = item.id as string;
 
 	const { classPrefix, stylize } = React.useContext(TableContext);
 

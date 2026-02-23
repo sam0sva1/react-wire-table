@@ -3,9 +3,10 @@ import React from 'react';
 export interface IArrowUpProps {
 	width?: number;
 	height?: number;
+	fill?: string;
 }
 
-export function ArrowUp({ width, height }: IArrowUpProps) {
+export function ArrowUp({ width, height, fill }: IArrowUpProps) {
 	return (
 		<svg
 			width={width || '24px'}
@@ -15,7 +16,7 @@ export function ArrowUp({ width, height }: IArrowUpProps) {
 		>
 			<path
 				d="M7 4.419V15a1 1 0 0 1-2 0V4.411L1.707 7.707A1 1 0 1 1 .293 6.293L5.995.585l5.708 5.708a1 1 0 0 1-1.415 1.414L7 4.42z"
-				fill="#C8C8C8"
+				fill={fill || '#C8C8C8'}
 			/>
 		</svg>
 	);

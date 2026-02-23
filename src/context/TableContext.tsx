@@ -1,5 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { TGrid, TItem } from '../types';
+
+type StylizeArg = string | false | undefined | null | Record<string, unknown>;
 
 export interface ITableContext {
 	grid: TGrid;
@@ -11,7 +13,7 @@ export interface ITableContext {
 	};
 	classPrefix: string;
 	selectPath(kit: TItem, path: string): string | number | undefined | null;
-	stylize(...args: any): string;
+	stylize(...args: StylizeArg[]): string;
 }
 
 export interface ITableContextProps {
@@ -27,19 +29,19 @@ const defaultValue: ITableContext = {
 		isEmpty: true,
 	},
 	classPrefix: 'rwt-',
-	selectPath: (kit, path) => kit[path],
-	stylize: (args) => args,
+	selectPath: (kit, path) => kit[path] as string | number | undefined | null,
+	stylize: (...args) => args.filter(Boolean).join(' '),
 };
 
 export const TableContext = React.createContext<ITableContext>(defaultValue);
 const { Consumer } = TableContext;
 
-export function withTableContext<T>(
-	Comp: React.ComponentType
+export function withTableContext<T extends ITableContextProps>(
+	Comp: React.ComponentType<T>
 ): React.FC<Omit<T, 'context'>> {
-	return function TableContextWrapper(props) {
+	return function TableContextWrapper(props: Omit<T, 'context'>) {
 		return (
-			<Consumer>{(context) => <Comp context={context} {...props} />}</Consumer>
+			<Consumer>{(context) => <Comp {...(props as T)} context={context} />}</Consumer>
 		);
 	};
 }

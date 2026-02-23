@@ -4,29 +4,24 @@ export function selectPath(
 	kit: TItem,
 	path: string
 ): string | number | undefined | null {
-	if (typeof path !== 'undefined' && typeof path === 'string') {
+	if (typeof path === 'string') {
 		const parts = path
-			.replace(']', '')
-			.replace('[', '.')
+			.replace(/\]/g, '')
+			.replace(/\[/g, '.')
 			.split('.');
 		const len = parts.length;
 
-		let temp = kit;
-		let result;
+		let temp: unknown = kit;
 
 		for (let i = 0; i < len; i += 1) {
 			if (temp && typeof temp === 'object' && parts[i] in temp) {
-				temp = temp[parts[i]];
-
-				if (i === len - 1) {
-					result = temp as any;
-				}
+				temp = (temp as Record<string, unknown>)[parts[i]];
 			} else {
 				return undefined;
 			}
 		}
 
-		return result;
+		return temp as string | number | undefined | null;
 	}
 
 	return undefined;

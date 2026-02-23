@@ -38,7 +38,6 @@ export function Icon(props: IIconProps) {
 	return (
 		<div
 			tabIndex={-1}
-			role="button"
 			className={stylize({ 'sort-icon': { mod: { [type]: true } } })}
 			onClick={onClick}
 		>
